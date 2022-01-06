@@ -1,0 +1,24 @@
+﻿<Window x:Class="FELM.Vare_lokalition"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FELM"
+        mc:Ignorable="d"
+        Loaded="Onload"
+        Title="Vare_lokalition" Height="450" Width="800">
+    <Grid>
+        <TextBox Name="id" Margin="220,190,490,204" TextChanged="id_change"></TextBox>
+        <ComboBox Name="lokalition" SelectionChanged="lokalition_SelectionChanged" Margin="349,190,308,204" Visibility="Hidden">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Lokalition}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Label Name="vareB" Margin="220,241,420,149" Width="152" Height="28" Visibility="Hidden">test</Label>
+        <Button Name="loSend" Margin="548,190,116,204" Visibility="Hidden" Click="loSend_Click">Send</Button>
+    </Grid>
+</Window>

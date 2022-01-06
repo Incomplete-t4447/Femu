@@ -1,0 +1,589 @@
+﻿<Page x:Class="FELM.ScanPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FELM"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1366"
+      Loaded="Onload"
+      Title="ScanPage">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Pic/festival_1.png"/>
+        </Grid.Background>
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="267*" />
+                <ColumnDefinition Width="533*" />
+
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="31*" />
+                <RowDefinition Height="59*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="0" Margin="10,0,55,59">
+                <Grid.Background>
+                    <ImageBrush ImageSource="logo_festival-el.png"/>
+                </Grid.Background>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,60,257,19"/>
+
+            <Grid Grid.Row="1" Grid.Column="1" Margin="49,60,10,19"/>
+
+            <Label Name="search" 
+                    Content="search" 
+                    Foreground="White"
+                    HorizontalContentAlignment="Left" 
+                    VerticalContentAlignment="Top"
+                    FontWeight="Bold" Grid.ColumnSpan="2" Grid.Row="2" Margin="50,0,0,0"
+            />
+
+            <TextBox HorizontalAlignment="Left"
+                 Height="19"
+                 TextWrapping="Wrap"
+                 Text=""
+                 VerticalAlignment="Top"
+                 Width="115"
+                 Background="White" Grid.ColumnSpan="2" Grid.Row="2" Margin="100,5,0,0" 
+            />
+
+
+            <Border
+                Grid.Row="1"
+                Grid.Column="0"
+                
+                Padding="1" 
+                CornerRadius="25" 
+                BorderThickness="0" 
+                BorderBrush="#FF008D7A" 
+                SnapsToDevicePixels="True"
+                Background="#FF002657"
+                Opacity="0.5"
+                Margin="30">
+
+                <Border.Effect>
+                    <DropShadowEffect></DropShadowEffect>
+                </Border.Effect>
+                <ScrollViewer Visibility="Hidden">
+                    <StackPanel Name="EventStackPanel" RenderTransformOrigin="0.489,0.659" Grid.ColumnSpan="2" Grid.Row="2"  Margin="21,25,10,0"/>
+                </ScrollViewer>
+            </Border>
+
+            <Border
+                Name="FavoritBorder"
+                Grid.Row="1"
+                Grid.Column="0"
+                Padding="1" 
+                CornerRadius="25" 
+                BorderThickness="0" 
+                BorderBrush="#FF008D7A" 
+                SnapsToDevicePixels="True"
+                Background="#FF008D7A"
+                Margin="30"
+                Visibility ="Hidden"
+                >
+
+
+                <Border.Effect>
+                    <DropShadowEffect></DropShadowEffect>
+                </Border.Effect>
+                <StackPanel Name="FavoritStackPanel"   RenderTransformOrigin="0.489,0.659" Grid.ColumnSpan="2" Grid.Row="2"  Margin="21,25,10,0"/>
+            </Border>
+
+            <Border
+                Name="EventsBorder"
+                Grid.Row="1"
+                Grid.Column="0"
+                Padding="1" 
+                CornerRadius="25" 
+                BorderThickness="0" 
+                BorderBrush="#FF008D7A" 
+                SnapsToDevicePixels="True"
+                Background="#FF008D7A"
+                Margin="30"
+                Visibility ="Hidden"
+                >
+
+
+                <Border.Effect>
+                    <DropShadowEffect></DropShadowEffect>
+                </Border.Effect>
+                <StackPanel Name="EventsStackPanel"   RenderTransformOrigin="0.489,0.659" Grid.ColumnSpan="2" Grid.Row="2"  Margin="21,25,10,0"/>
+            </Border>
+            <Border
+                Grid.Row="1"
+                Grid.Column="1"
+                
+                Padding="1" 
+                CornerRadius="25" 
+                BorderThickness="0" 
+                BorderBrush="#FF008D7A" 
+                SnapsToDevicePixels="True"
+                Background="#FF002657"
+                Opacity="0.5"
+                Margin='30'>
+
+                <Border.Effect>
+                    <DropShadowEffect></DropShadowEffect>
+                </Border.Effect>
+
+                <Grid>
+                    <DataGrid Name = "Vare" AutoGenerateColumns = "False" Background="Transparent" RowBackground="Transparent" Foreground="White" SelectionChanged="Vare_SelectionChanged" BorderBrush="{x:Null}" Margin="10">
+
+
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Width="*" Binding="{Binding VareNummer}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Vare Nr." TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="*" Binding="{Binding Beskrivelse}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Beskrivelse" TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+
+                            <DataGridTextColumn Width="*" Binding="{Binding Antal}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Antal" TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+
+                            <DataGridTextColumn Width="*" Binding="{Binding Status}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Status" TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="*" Binding="{Binding Lokation}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Lokation" TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+
+                            <DataGridTextColumn Width="*" Binding="{Binding Ampere}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Ampere" TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="*" Binding="{Binding PinNummer}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Pin Nr." TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="*" Binding="{Binding Længde}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="længde" TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="*" Binding="{Binding WebshopNummer}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Webshop Nr." TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="*" Binding="{Binding RFIDNummer}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="RFID Nr." TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="*" Binding="{Binding Note}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Note" TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                        </DataGrid.Columns>
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="Foreground" Value="White"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                    </DataGrid>
+                </Grid>
+            </Border>
+
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  Width="174" Height="152" Margin="464,75,272,38" Grid.Column="1" Background="Transparent">
+                <Border CornerRadius="5" Padding="5" 
+                        BorderThickness="1" 
+                        SnapsToDevicePixels="True" 
+                        Background="#FF008D7A"
+                        >
+                    <Button Content="Historik"  HorizontalAlignment="Center"  VerticalAlignment="Center" Width="200"  FontWeight="Bold" Background="Transparent"  BorderThickness="0" Foreground="#FFFFFF" Click="history_Button">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Green"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGoldenrod"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Border>
+
+                <Border CornerRadius="5" Padding="5" 
+                        BorderThickness="1" 
+                        SnapsToDevicePixels="True" 
+                        Background="#FF008D7A"
+                        >
+                    <Button Content="Favoritter"  HorizontalAlignment="Center"  VerticalAlignment="Center" Width="200" FontWeight="Bold" Background="Transparent"  BorderThickness="0" Foreground="#FFFFFF" Click="Favorit_Button">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Green"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGoldenrod"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Border>
+                <Border CornerRadius="5" Padding="5" 
+                        BorderThickness="1" 
+                        SnapsToDevicePixels="True" 
+                        Background="#FF008D7A"
+                        >
+                    <Button Content="Vare Lokalition"  HorizontalAlignment="Center"  VerticalAlignment="Center" Width="200" FontWeight="Bold" Background="Transparent"  BorderThickness="0" Foreground="#FFFFFF" Click="Start_varelokalition">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Green"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGoldenrod"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Border>
+                <Border 
+                        x:Name="eventVare"
+                        CornerRadius="5" Padding="5" 
+                        BorderThickness="1" 
+                        SnapsToDevicePixels="True" 
+                        Background="#FF008D7A"
+                        Visibility="Collapsed"
+                        >
+                    <Button Content="Event Vare"  HorizontalAlignment="Center"  VerticalAlignment="Center" Width="200" FontWeight="Bold" Background="Transparent"  BorderThickness="0" Foreground="#FFFFFF" Click="Start_eventVare">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Green"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGoldenrod"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Border>
+                <Border CornerRadius="5" Padding="5" 
+                        BorderThickness="1" 
+                        SnapsToDevicePixels="True" 
+                        Background="#FF008D7A"
+                        >
+                    <Button Content="Vare"  HorizontalAlignment="Center"  VerticalAlignment="Center" Width="200"  FontWeight="Bold" Background="Transparent"  BorderThickness="0" Foreground="#FFFFFF">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Green"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGoldenrod"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Border>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  Width="174" Height="129" Margin="650,77,101,59" Grid.Column="1" Background="Transparent">
+                <Border CornerRadius="5" Padding="5" 
+                        BorderThickness="1" 
+                        SnapsToDevicePixels="True" 
+                        Background="#FF008D7A"
+                        >
+                    <Button Content="Opret Event"  HorizontalAlignment="Center"  VerticalAlignment="Center" Width="200"  FontWeight="Bold" Background="Transparent"  BorderThickness="0" Foreground="#FFFFFF" Click="OpretEvent_Button">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Green"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGoldenrod"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Border>
+
+                <Border CornerRadius="5" Padding="5" 
+                        BorderThickness="1" 
+                        SnapsToDevicePixels="True" 
+                        Background="#FF008D7A"
+                        >
+                    <Button Content="Start Udlejning"  HorizontalAlignment="Center"  VerticalAlignment="Center" Width="200" FontWeight="Bold" Background="Transparent"  BorderThickness="0" Foreground="#FFFFFF" Click="StartUdlejning_Button">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Green"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGoldenrod"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Border>
+
+                <Border CornerRadius="5" Padding="5" 
+                        BorderThickness="1" 
+                        SnapsToDevicePixels="True" 
+                        Background="#FF008D7A"
+                        >
+                    <Button Content="Afleveringsmode"  HorizontalAlignment="Center"  VerticalAlignment="Center" Width="200" FontWeight="Bold" Background="Transparent"  BorderThickness="0" Foreground="#FFFFFF" Click="Afleveringsmode_Button">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Green"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGoldenrod"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Border>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  Width="174" Height="123" Margin="278,77,458,65" Grid.Column="1" >
+                <Border CornerRadius="5" Padding="5" 
+                        BorderThickness="1" 
+                        SnapsToDevicePixels="True" 
+                        Background="#FF008D7A"
+                        >
+                    <Button Content="Indstil RFID"  HorizontalAlignment="Center"  VerticalAlignment="Center" Width="200" FontWeight="Bold" Background="Transparent"  BorderThickness="0" Foreground="#FFFFFF" Click="Antenne_Button">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Green"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGoldenrod"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Border>
+
+                <Border CornerRadius="5" Padding="5" 
+                        BorderThickness="1" 
+                        SnapsToDevicePixels="True" 
+                        Background="#FF008D7A"
+                        >
+                    <Button Content="Udlån/Aflever"  HorizontalAlignment="Center"  VerticalAlignment="Center" Width="200" FontWeight="Bold" Background="Transparent"  BorderThickness="0" Foreground="#FFFFFF" Click="Toggle_Aflevering_Button">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Green"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGoldenrod"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Border>
+                <Border CornerRadius="5" Padding="5" 
+                        BorderThickness="1" 
+                        SnapsToDevicePixels="True" 
+                        Background="#FF008D7A"
+                        >
+                    <Button Content="Start scanner"  HorizontalAlignment="Center"  VerticalAlignment="Center" Width="200" FontWeight="Bold" Background="Transparent"  BorderThickness="0" Foreground="#FFFFFF" Click="Start_Scanner">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Green"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGoldenrod"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Border>
+                <Border CornerRadius="5" Padding="5" 
+                        BorderThickness="1" 
+                        SnapsToDevicePixels="True" 
+                        Background="#FF008D7A" Height="28"
+                        >
+                    <Button Content="Events"  HorizontalAlignment="Center"  VerticalAlignment="Center" Width="200" FontWeight="Bold" Background="Transparent"  BorderThickness="0" Foreground="#FFFFFF" Click="Start_Events">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Green"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGoldenrod"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Border>
+            </StackPanel>
+
+            <Label Name="Lokalition" 
+                       Content="Lokalition 0-99:" 
+                       Foreground="White"
+                       HorizontalContentAlignment="Right" 
+                       VerticalContentAlignment="Top"
+                    FontWeight="Bold" Grid.Row="1" Grid.Column="1" Margin="152,10,211,-10" 
+            />
+            <TextBox HorizontalAlignment="Right"
+                 Height="19"
+                 TextWrapping="Wrap"
+                 Text=""
+                 VerticalAlignment="Top"
+                 Width="142"
+                 Background="White" Grid.Column="1" Grid.Row="1" Margin="0,11,51,0"/>
+
+        </Grid>
+        <Grid Grid.Row="0"
+            Grid.Column="0"
+            Margin="4,0,529,365"
+            >
+            <TextBlock x:Name="alertPopup" Background="White" Width="400" Height="50" Margin="314,201,101,139" Visibility="Hidden"></TextBlock>
+        </Grid>
+
+
+    </Grid>
+</Page>

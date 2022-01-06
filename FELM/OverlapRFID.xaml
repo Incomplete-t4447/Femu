@@ -1,0 +1,15 @@
+﻿<Window x:Class="FELM.OverlapRFID"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FELM"
+        mc:Ignorable="d"
+        Title="OverlapRFID" Height="450" Width="800">
+    <Grid>
+        <TextBlock Margin="149,103,-149,-103">Der er ingen vare med dette RFID i systemet. Indtast Varenummeret her og Accepter eller luk vinduet</TextBlock>
+        <Button x:Name="AcceptButton" Content="Accepter" Margin="200,322,474,50" Click="AcceptButton_Click"></Button>
+        <Button x:Name="CloseButton" Content="Luk" Margin="475,322,200,50" Click="CloseButton_Click"></Button>
+        <TextBox Name="VareTextBox" HorizontalAlignment="Left" Height="23" Margin="310,215,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="215" TextChanged="VareTextBox_TextChanged"/>
+    </Grid>
+</Window>

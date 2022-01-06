@@ -1,0 +1,116 @@
+﻿<Window x:Class="FELM.HistorikWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FELM"
+      xmlns:core="clr-namespace:System;assembly=mscorlib"
+      xmlns:StaticData="clr-namespace:FELM"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1366"
+        Title="HistorikWindow">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Pic/festival_1.png"/>
+        </Grid.Background>
+        <Grid>
+            <DataGrid Grid.Row="1" Grid.Column="1"
+                              Name = "HistorikPage_DataGrid" 
+                              AutoGenerateColumns = "False" 
+                              Background="Transparent" 
+                              RowBackground="Transparent" 
+                              Foreground="White"  
+                              BorderBrush="{x:Null}" 
+                              Margin="40,55,20,0"
+                              IsReadOnly="True"
+                              >
+
+
+                <DataGrid.Columns>
+
+
+                    <DataGridTextColumn Width="*" Binding="{Binding VareNr}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Vare Nr." TextWrapping="Wrap"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Width="*" Binding="{Binding Beskrivelse}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Beskrivelse" TextWrapping="Wrap"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+
+                    <DataGridTextColumn Width="*" Binding="{Binding Antal}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Sted" TextWrapping="Wrap"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <!-- Combo box Bindings og set up! -->
+                    <DataGridTextColumn Width="*" Binding="{Binding Status}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Sted" TextWrapping="Wrap"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <!-- ............................... -->
+
+
+
+                    <DataGridTextColumn Width="*" Binding="{Binding VareLokation}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Lokation" TextWrapping="Wrap"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+
+                    <DataGridTextColumn Width="*" Binding="{Binding Ampere}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Ampere" TextWrapping="Wrap"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Width="*" Binding="{Binding PinNr}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Pin Nr." TextWrapping="Wrap"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Width="*" Binding="{Binding Længde}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="længde" TextWrapping="Wrap"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Width="*" Binding="{Binding WebshopVareNummer}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Webshop Nr." TextWrapping="Wrap"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Width="*" Binding="{Binding RFIDNummer}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="RFID Nr." TextWrapping="Wrap"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Width="*" Binding="{Binding Note}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Note" TextWrapping="Wrap"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+                </DataGrid.Columns>
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                        <Setter Property="Foreground" Value="White"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>

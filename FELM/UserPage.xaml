@@ -1,0 +1,581 @@
+﻿<Page x:Class="FELM.UserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:FELM" xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d"
+      d:DesignHeight="768" d:DesignWidth="1366"
+      Loaded="Onload"
+      Title="UserPage">
+
+    <Page.Resources>
+        <local:CellColor x:Key="CellColor"/>
+    </Page.Resources>
+
+    <Viewbox Stretch="Fill">
+        <Grid Height="768" Width="1366">
+
+
+
+            <Grid.Background>
+                <ImageBrush ImageSource="Pic/festival_1.png"/>
+            </Grid.Background>
+
+
+            <Grid>
+
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.05*" />
+                    <ColumnDefinition Width="*" />
+
+                    <ColumnDefinition Width="0.50*" />
+                    <ColumnDefinition Width="0.05*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0"
+                  Grid.Column="0"
+            />
+                <Grid Grid.Row="1"
+                  Grid.Column="0"
+            />
+                <Grid Grid.Row="2"
+                  Grid.Column="0"
+            />
+                <Grid Grid.Row="0"
+                  Grid.Column="1"
+            />
+                <Grid Grid.Row="1"
+                  Grid.Column="1"
+            />
+                <Grid Grid.Row="2"
+                  Grid.Column="1"
+            />
+                <Grid Grid.Row="0"
+                  Grid.Column="3"
+            />
+                <Grid Grid.Row="0"
+                  Grid.Column="4"
+            />
+                <Grid Grid.Row="1"
+                  Grid.Column="3"
+            />
+                <Grid Grid.Row="1"
+                  Grid.Column="4"
+            />
+                <Grid Grid.Row="2"
+                  Grid.Column="3"
+            />
+                <Grid Grid.Row="2"
+                  Grid.Column="4"
+            />
+
+                <Grid Grid.Row="0" Grid.Column="1" Margin="0,0,541,0">
+                    <Image Source="logo_festival-el.png"></Image>
+                    <!-- Page Header -->
+                    <TextBox VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="50,75,50,0" FontSize="20" Background="Transparent" Text="Bruger" FontWeight="Bold" Foreground="SteelBlue" BorderThickness="0" IsReadOnly="True"></TextBox>
+                    <fa:ImageAwesome x:Name="TilbageKnapEvent" Icon="ChevronCircleLeft" Height="58" Width="67" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="1233,0,-987,46" Foreground="White" MouseDown="TilbageKnapEvent_MouseDown" MouseEnter="TilbageKnapEvent_MouseEnter" MouseLeave="TilbageKnapEvent_MouseLeave" />
+
+                </Grid>
+
+
+
+
+
+                <Button Visibility="Collapsed" Grid.Row="2" Grid.Column="2"
+                    Name="TryhardBtn"
+                    Content="Back"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="93"
+                    Height="27"
+                    Click="BackButton_Click"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Margin="91,28,0,35"/>
+                <Border
+                Grid.Row="1"
+                Grid.Column="1"
+
+                Padding="1"
+                CornerRadius="25"
+                BorderThickness="0"
+                BorderBrush="#FF008D7A"
+                SnapsToDevicePixels="True"
+
+                Opacity="0.5"
+                Margin="10">
+                    <Border.Background >
+                        <SolidColorBrush Color="#FF002657" Opacity="0.9"></SolidColorBrush>
+                    </Border.Background>
+                    <Border.Effect>
+                        <DropShadowEffect></DropShadowEffect>
+                    </Border.Effect>
+                </Border>
+
+                <DataGrid Grid.Column="1" Grid.Row="1"
+                      x:Name = "UserDataGrid"
+                      AutoGenerateColumns = "True"
+                      AutoGeneratingColumn="UserDataGrid_AutoGeneratingColumn"
+                      Background="Transparent"
+                      RowBackground="Transparent"
+                      Foreground="white"
+                      BorderBrush="{x:Null}"
+                      Margin="20,50,20,50"
+                      FontSize="16"
+                      IsReadOnly="True"
+
+
+            >
+
+
+
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Margin" Value="0,0,10,0"></Setter>
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                        <Setter Property="Foreground" Value="LightGray"/>
+
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn>
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell" >
+                                <Setter Property="Background" Value="{Binding Color, Converter={StaticResource CellColor}}"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <EventSetter Event="MouseDoubleClick" Handler="UserDatagrid_MouseDoubleClick"></EventSetter>
+                    </Style>
+                </DataGrid.Resources>
+
+
+
+
+
+                </DataGrid>
+
+
+
+                <StackPanel Grid.Column="2" Grid.Row="0"
+
+                        Margin="50">
+                    <StackPanel.Resources>
+                        <Style x:Key = "myButtonStyle" TargetType = "Button">
+
+                            <Setter Property = "Foreground" Value = "White" />
+                            <Setter Property = "FontSize" Value = "12" />
+                            <Setter Property = "Margin" Value = "0,20,0,0" />
+                            <Setter Property = "Background" Value="#FF008D7A"/>
+                            <Setter Property = "FontWeight" Value="Bold"/>
+
+                        </Style>
+                    </StackPanel.Resources>
+
+
+
+
+
+
+                </StackPanel>
+
+
+                <Border
+                Grid.Row="1"
+                Grid.Column="2"
+
+                Padding="1"
+                CornerRadius="25"
+                BorderThickness="0"
+                BorderBrush="#FF008D7A"
+                SnapsToDevicePixels="True"
+                Background="#FF002657"
+                Opacity="0.5"
+                Margin="10">
+
+                    <Border.Effect>
+                        <DropShadowEffect></DropShadowEffect>
+                    </Border.Effect>
+
+                </Border>
+
+                <Grid Grid.Row="1" Grid.Column="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="1" Grid.Column="0"
+                        Margin="30,5"
+                        Name="AddUserStack">
+                        <StackPanel.Resources>
+                            <Style x:Key = "myButtonStyles" TargetType = "Button">
+
+                                <Setter Property = "Foreground" Value = "White" />
+                                <Setter Property = "FontSize" Value = "12" />
+                                <Setter Property = "Margin" Value = "0,20,0,0" />
+                                <Setter Property = "Background" Value="#FF008D7A"/>
+                                <Setter Property = "FontWeight" Value="Bold"/>
+
+                            </Style>
+                        </StackPanel.Resources>
+
+                        <Label Content="Tilføj Ny Bruger"
+                       Name="UserHeaderLabel"
+                       Foreground="LightGray"
+                       FontSize="22"
+                       HorizontalAlignment="Center" Margin="0,0,-6.4,0" Width="160"/>
+
+                    <Label Content="Brugernavn. (*)"
+                       Foreground="LightGray"/>
+                    <TextBox Name="UsernameText"></TextBox>
+
+                    <Label Content="Navn. (*)"
+                       Foreground="LightGray"/>
+
+                        <TextBox Name="UserName"/>
+
+                    <Label Content="Adgangskode. (*)"
+                       Foreground="LightGray"/>
+
+                        <PasswordBox Name="PasswordText"/>
+
+
+                    <Label Content="Mail Adresse."
+                       Foreground="LightGray"/>
+
+                        <TextBox Name="MailText"/>
+
+                    <Label Content="Rfid nummer"
+                           Foreground="LightGray"/>
+
+                        <TextBox Name="rfidnummer"/>
+
+
+
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="1"
+                            Margin="30,5,30,35"
+                            Name="AddUsersStack" Grid.RowSpan="2">
+                        <StackPanel.Resources>
+                            <Style x:Key = "myButtonStyles" TargetType = "Button">
+
+                                <Setter Property = "Foreground" Value = "White" />
+                                <Setter Property = "FontSize" Value = "12" />
+                                <Setter Property = "Margin" Value = "0,20,0,0" />
+                                <Setter Property = "Background" Value="#FF008D7A"/>
+                                <Setter Property = "FontWeight" Value="Bold"/>
+
+                            </Style>
+                        </StackPanel.Resources>
+
+                        <Label Content=""
+                           Name="AdressLabel"
+                           Foreground="LightGray"
+                           FontSize="22"
+                           HorizontalAlignment="Center"/>
+
+                    <Label Content="Adresse."
+                           Foreground="LightGray"/>
+                    <TextBox Name="AdresseText"></TextBox>
+
+                    <Label Content="Nr."
+                           Foreground="LightGray"/>
+
+                        <TextBox Name="NrText"/>
+
+                    <Label Content="Post Nr."
+                           Foreground="LightGray"/>
+
+                        <TextBox Name="PostNrText"
+                             PreviewTextInput="NumberValidation"/>
+
+                    <Label Content="Telefon nummer."
+                           Foreground="LightGray"/>
+
+                        <TextBox Name="TelefonText"
+                             PreviewTextInput="NumberValidation" PreviewKeyDown="TelefonText_PreviewKeyDown"/>
+
+
+
+
+
+
+                    <Label Content="Type."
+                           Foreground="LightGray"/>
+
+                        <StackPanel
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        >
+                            <Label
+                            Content="Admin:"
+                            Foreground="LightGray"
+                            FontSize="10"
+                            >
+                            </Label>
+                            <CheckBox
+                            Name="AdminCheckbox"
+                            Margin="0,4,0,0"
+                            Click="AdminCheckIsActive"
+                            >
+                            </CheckBox>
+                            <Label
+                            Content="Hjælper:"
+                            Foreground="LightGray"
+                            FontSize="10"
+                            >
+                            </Label>
+                            <CheckBox
+                            Name="HjælperCheckbox"
+                            Margin="0,4,0,0"
+                            Click="HjælperCheckIsActive"
+                            >
+                            </CheckBox>
+                        </StackPanel>
+
+                    <Label Content=""
+                           Foreground="LightGray"/>
+
+                        <Button
+                        Name="VælgEvents"
+                        Click="VælgEvents_Click"
+                        >Vælg Events</Button>
+
+                    <Label Content="Farve. (*)"
+                           Foreground="LightGray"></Label>
+
+                        <ComboBox HorizontalAlignment="Center"
+                              Name="ColorComboBox"
+                              Background="White"
+                              Width="100"
+                              IsEditable="True"
+
+                    >
+
+                            <!--<ComboBoxItem IsSelected="True">#000000</ComboBoxItem>
+                        <ComboBoxItem Name="preset" Background="Red">#FF0000</ComboBoxItem>
+                        <ComboBoxItem Background="Blue" >#0000FF</ComboBoxItem>
+                        <ComboBoxItem Background="Green">#00FF00</ComboBoxItem>
+                        <ComboBoxItem Background="Black">#FFFFFF</ComboBoxItem>
+                        <ComboBoxItem Background="Pink">#FFFFC0CB</ComboBoxItem>
+                        <ComboBoxItem Background="DeepPink">#FFFF1493</ComboBoxItem>
+                        <ComboBoxItem Background="LightBlue">#FFADD8E6</ComboBoxItem>
+                        <ComboBoxItem Background="Brown">#FFA52A2A</ComboBoxItem>
+                        <ComboBoxItem Background="SandyBrown">#FFF4A460</ComboBoxItem>
+                        <ComboBoxItem Background="Orange">#FFFFA500</ComboBoxItem>
+                        <ComboBoxItem Background="Gold">#FFFFD700</ComboBoxItem>
+                        <ComboBoxItem Background="Silver">#FFC0C0C0</ComboBoxItem>
+                        <ComboBoxItem Background="YellowGreen">#FF9ACD32</ComboBoxItem>
+                        <ComboBoxItem Background="BlueViolet">#FF8A2BE2</ComboBoxItem>
+                        <ComboBoxItem Background="Cyan">#FF00FFFF</ComboBoxItem>
+                        <ComboBoxItem Background="#FF856F4F">#FF856F4F</ComboBoxItem>
+                        <ComboBoxItem Background="#FF040D68">#FF040D68</ComboBoxItem>
+                        <ComboBoxItem Background="#FFFBFB01">#FFFBFB01</ComboBoxItem>
+                        <ComboBoxItem Background="#FFB05E26">#FFB05E26</ComboBoxItem>
+                        <ComboBoxItem Background="#FF00FB67">#FF00FB67</ComboBoxItem>
+                        <ComboBoxItem Background="#FF0097FF">#FF0097FF</ComboBoxItem>
+                        <ComboBoxItem Background="#FF3E2711">#FF3E2711</ComboBoxItem>
+                        <ComboBoxItem Background="#FF595B34">#FF595B34</ComboBoxItem>
+                        <ComboBoxItem Background="#FF4D7459">#FF4D7459</ComboBoxItem>
+                        <ComboBoxItem Background="#FF08471B">#FF08471B</ComboBoxItem>
+                        <ComboBoxItem Background="#FF0C737E">#FF0C737E</ComboBoxItem>
+                        <ComboBoxItem Background="#FF49696C">#FF49696C</ComboBoxItem>
+                        <ComboBoxItem Background="#FF7E97EA">#FF7E97EA</ComboBoxItem>
+                        <ComboBoxItem Background="#FF45027E">#FF45027E</ComboBoxItem>
+                        <ComboBoxItem Background="#FF815A85">#FF815A85</ComboBoxItem>
+                        <ComboBoxItem Background="#FF7A0E4D">#FF7A0E4D</ComboBoxItem>-->
+                        </ComboBox>
+
+                    </StackPanel>
+                </Grid>
+
+
+            </Grid>
+
+            <!-- ......................................................Vælg event Grid til at add og fjerne events til users...................  -->
+
+            <Border Name="MultiGrid" Visibility="Collapsed" Background="#4F000000" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <Grid 
+             Margin="200,100,200,100"
+             KeyboardNavigation.TabNavigation="Cycle" 
+             KeyboardNavigation.ControlTabNavigation="Cycle" 
+             KeyboardNavigation.DirectionalNavigation="Cycle" 
+              >
+
+
+                    <Border
+
+               Padding="1"
+               CornerRadius="25"
+               BorderThickness="0"
+               BorderBrush="#FF008D7A"
+               SnapsToDevicePixels="True"
+               Background="#FF002657"
+
+
+           >
+
+                        <Border.Effect>
+                            <DropShadowEffect></DropShadowEffect>
+                        </Border.Effect>
+
+                    </Border>
+
+
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="1*" />
+
+
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0"
+                          Grid.Column="0"
+                    />
+
+                        <Grid Grid.Row="0"
+                          Grid.Column="1"
+                    />
+                        <Grid Grid.Row="0"
+                          Grid.Column="2"
+                    />
+
+
+                        <Label  Grid.Row="0"
+                            Grid.Column="0"
+                               Name="EventLabel"
+                               Content="Events:"
+                               Foreground="Green"
+                               FontSize="45"
+                               HorizontalAlignment="Center"
+                        >
+
+                        </Label>
+
+
+                        <ScrollViewer Grid.Column="0" Grid.Row="1" Margin="0,80,0,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Name="EventStackPanelLabel1"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                >
+                                </StackPanel>
+
+                                <StackPanel Name="EventStackPanelLabel2"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                >
+                                </StackPanel>
+
+                                <StackPanel Name="EventStackPanelLabel3"
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                >
+                                </StackPanel>
+
+                            </Grid>
+
+                        </ScrollViewer>
+
+
+                        <Button Grid.Column="3" Grid.Row="2"
+                            Name="LukGrid"
+                            Content="Luk"
+                            Height="50"
+                            Width="200"
+                            VerticalAlignment="Bottom"
+                            Margin="0,0,0,25"
+                            Click="LukGrid_Click"
+                    ></Button>
+                        <Button Grid.Column="3" Grid.Row="2"
+                            Focusable="True"
+                            Name="TilføjUserEvent"
+                            Content="Godkend events til bruger"
+                            Height="50"
+                            Width="200"
+                            Click="TilføjUserEvent_Click"
+                            VerticalAlignment="Bottom"
+                            Margin="0,0,0,100"
+                    ></Button>
+                    </Grid>
+
+                </Grid>
+            </Border>
+
+            <Border Name="rfidBorder" Background="#4F000000" Visibility="Collapsed">
+                <Border x:Name="rfidBorder2" Visibility="Visible" Margin="331,206,398.4,248" Background="#FF002657" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3">
+                    <Grid KeyboardNavigation.TabNavigation="Cycle" KeyboardNavigation.ControlTabNavigation="Cycle" KeyboardNavigation.DirectionalNavigation="Cycle">
+                        <TextBox x:Name="scanText" Focusable="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="50" Margin="25,25,0,0"></TextBox>
+                        <StackPanel Margin="25,85,391,0">
+                            <Button x:Name="scanButton" Focusable="True" Width="100" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Scan" Margin="0,0,0,5" Click="scanButton_Click"></Button>
+                            <Button x:Name="gemRfid" Content="Gem Rfdid" Width="100" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,5" Click="gemRfid_Click"></Button>
+                            <Button x:Name="SetPowerKnap" Content="Ændre Styrke" Width="100" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,5" Click="SetPowerKnap_Click"></Button>
+                            <Button x:Name="ChangeScannerIPKnap" Content="Ændre Scanner IP" Width="100" Height="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Click="ChangeScannerIPKnap_Click"/>
+                            <Button x:Name="annullerRfid" Content="Annuller" Width="100" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5,0,0" Click="annulerRfid_Click"></Button>
+                        </StackPanel>
+
+                        <Border x:Name="StarterScannerBorder" Visibility="Collapsed" Background="#FF002657" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3">
+                            <Grid>
+                                <Label Content="Starter Scanner!" HorizontalAlignment="Center" Margin="0,15,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="72"/>
+                                <fa:ImageAwesome Icon="Refresh" Spin="True" Height="48" Width="48" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20" />
+                            </Grid>
+                        </Border>
+
+                        <Border x:Name="changeStyrkeBorder" Visibility="Collapsed" Background="#FF002657" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3">
+                            <Grid KeyboardNavigation.TabNavigation="Cycle" KeyboardNavigation.ControlTabNavigation="Cycle" KeyboardNavigation.DirectionalNavigation="Cycle">
+                                <Label Content="Ændre Signal Styrke" HorizontalAlignment="Center" Margin="0,15,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="36"/>
+                                <Label Name="userAntennaPowerLabel" Content="200" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="80,0,0,0" Foreground="White" FontWeight="Bold"/>
+                                <Label Content="Styrke: " HorizontalAlignment="Center" Margin="0,0,80,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="30"/>
+                                <Slider Maximum="300" Minimum="10" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" Name="userAntennaPower" Value="200" VerticalAlignment="Bottom" Margin="0,0,0,20" ValueChanged="userAntennaPower_ValueChanged"/>
+                                <Button x:Name="SkjulStyrkeBorder" Focusable="True" Content="X" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="34" Foreground="Red" Background="#FF474747" FontWeight="Bold" FontSize="24" Click="SkjulStyrkeBorder_Click"/>
+                            </Grid>
+                        </Border>
+
+                        <Border x:Name="changeScannerIP" Visibility="Collapsed" Background="#FF002657" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3">
+                            <Grid KeyboardNavigation.TabNavigation="Cycle" KeyboardNavigation.ControlTabNavigation="Cycle" KeyboardNavigation.DirectionalNavigation="Cycle">
+                                <Label Content="Ændre Scanner IP" HorizontalAlignment="Center" Margin="0,15,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="36"/>
+                                <TextBox x:Name="scannerIPTextBox" Focusable="True" HorizontalAlignment="Center" Height="60" TextWrapping="Wrap" Text="192.168.2.60" VerticalAlignment="Center" Width="300" FontSize="36"/>
+                                <Button x:Name="SkjulIPChanger"  Content="X" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="34" Foreground="Red" Background="#FF474747" FontWeight="Bold" FontSize="24" Click="SkjulIPChanger_Click"/>
+                                <Button x:Name="GemChangedIP" Content="Gem" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="35" FontWeight="Bold" BorderThickness="0" Foreground="#FFFFFF" Style="{DynamicResource eventBtn}" Margin="25,0,0,25" Height="50" Width="150" Click="GemChangedIP_Click"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Border>
+            </Border>
+        </Grid>
+    </Viewbox>
+    
+</Page>

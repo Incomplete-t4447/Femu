@@ -1,0 +1,1158 @@
+﻿<Page x:Class="FELM.New_ScanPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:FELM"
+      xmlns:core="clr-namespace:System;assembly=mscorlib"
+      xmlns:StaticData="clr-namespace:FELM" xmlns:fa="http://schemas.fontawesome.io/icons/"
+      Loaded="Onload"
+      mc:Ignorable="d"
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="New_ScanPage">
+    <Viewbox Stretch="Fill">
+        <Grid Height="1080" Width="1920">
+
+
+            <Grid.Background>
+                <ImageBrush ImageSource="Pic/festival_1.png"/>
+            </Grid.Background>
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.25*" />
+                    <ColumnDefinition Width="0.25*" />
+                    <ColumnDefinition Width="*" />
+
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.6*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="0.5*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0"
+                  Grid.Column="0"
+            />
+                <Grid Grid.Row="1"
+                  Grid.Column="0"
+            />
+                <Grid Grid.Row="2"
+                  Grid.Column="0"
+            />
+                <Grid Grid.Row="0"
+                  Grid.Column="1"
+            />
+                <Grid Grid.Row="1"
+                  Grid.Column="1"
+            />
+                <Grid Grid.Row="2"
+                  Grid.Column="1"
+            />
+
+
+                <!-- Alt under den her .................VAre liste under........................................ -->
+
+                <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" >
+                    <Grid.Background>
+                        <ImageBrush ImageSource="logo_festival-el.png"/>
+                    </Grid.Background>
+                    <Label
+                    Content="Registrer Materiale"
+                    FontWeight="Bold"
+                    FontSize="30"
+                    Foreground="SteelBlue"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Margin="119,0,0,20.2"
+                    >
+                    </Label>
+                    <Button x:Name="hide" Margin="126,258,479,-4.8" Background="Transparent" BorderBrush="Transparent" Click="hide_Click">
+
+                        <Image x:Name="hidePic" Source="Pic\icons8-open-pane-30.png" Stretch="Fill"></Image>
+                    </Button>
+                </Grid>
+
+                <Border
+                Name="ScanBorder"
+                Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+
+
+                Padding="1"
+                CornerRadius="25"
+                BorderThickness="0"
+                BorderBrush="#FF008D7A"
+                SnapsToDevicePixels="True"
+                Background="#FF002657"
+                Opacity="0.5"
+                Margin="20,5,20,5"
+                >
+
+                    <Border.Effect>
+                        <DropShadowEffect></DropShadowEffect>
+                    </Border.Effect>
+                </Border>
+                <Grid 
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="1"
+                    Height="50"
+                    VerticalAlignment="Top"
+                    
+                  >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+
+                    </Grid.ColumnDefinitions>
+
+
+                    <Label  Grid.Column="0"
+                   Name="Overskrift"
+                   Content="Scan_Page_DataGrid Liste:"
+                   Foreground="LightGray"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   FontSize="18" Margin="156,8,156,0"
+
+            />
+
+                    <Label Grid.Column="1"
+                   Name="Lokalition"
+                   Content="Manuelt indstastning af varenummer:"
+                   Foreground="LightGray"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Right"
+                   FontSize="18"
+                   VerticalAlignment="Center"
+
+            />
+                    <TextBox Grid.Row="1" Grid.Column="2"
+                         Name="ManueltVAreTxt"
+                         Height="30"
+                         TextWrapping="Wrap"
+                         Text=""
+                         Width="200"
+                         Background="White"
+                         KeyDown="TilføjVaremanuelt"
+                         HorizontalAlignment="Left"
+                         FontSize="16"
+
+                         VerticalAlignment="Center"
+
+                />
+
+                </Grid>
+
+                <!--   -->
+                <DataGrid Grid.Row="1"
+                      Grid.Column="1"
+                      Grid.ColumnSpan="2"
+
+                      Name = "Scan_Page_DataGridUdlej"
+                      AutoGenerateColumns = "False"
+                      Background="Transparent"
+                      RowBackground="Transparent"
+                      Foreground="White"
+                      BorderBrush="{x:Null}"
+                      Margin="40,55,20,0"
+                      MouseDoubleClick="Vare_MouseDoubleClick"
+                      IsReadOnly="True"
+                      FontSize="18"
+
+                >
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="*" Header="VareId" Binding="{Binding Vareid}" />
+                        <DataGridTextColumn Width="*" Header="Beskrivelse" Binding="{Binding Beskrivelse}" />
+                        <DataGridTextColumn Width="*" Header="Ampere" Binding="{Binding Ampere}" />
+                        <DataGridTextColumn Width="*" Header="Lokation" Binding="{Binding EventLokation}" />
+                        <DataGridTextColumn Width="*" Header="Event" Binding="{Binding EventName}" />
+                        <DataGridTextColumn Width="*" Header="Status" Binding="{Binding Status}" />
+                        <DataGridTextColumn Width="*" Header="Afleveret" Binding="{Binding Afleveret}" />
+                        <DataGridTextColumn Width="*" Header="WebShop Nr." Binding="{Binding WebShopVarenummer}" />
+                        <DataGridTextColumn Width="*" Header="Pin Nr." Binding="{Binding PinNr}" />
+                        <DataGridTextColumn Width="*" Header="Container" Binding="{Binding Container}" />
+                    </DataGrid.Columns>
+
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Margin" Value="0,0,10,0"/>
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Foreground" Value="LightGray"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+
+                </DataGrid>
+                <DataGrid Grid.Row="1"
+                      Grid.Column="1"
+                      Grid.ColumnSpan="2"
+
+                      Name = "Scan_Page_DataGridAflevere"
+                      Visibility="Collapsed"
+                      AutoGenerateColumns = "False"
+                      Background="Transparent"
+                      RowBackground="Transparent"
+                      Foreground="White"
+                      BorderBrush="{x:Null}"
+                      Margin="40,55,20,0"
+                      MouseDoubleClick="Vare_MouseDoubleClick"
+                      IsReadOnly="True"
+                      FontSize="18"
+
+                >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="*" Header="VareId" Binding="{Binding Vareid}" />
+                        <DataGridTextColumn Width="*" Header="Beskrivelse" Binding="{Binding Beskrivelse}" />
+                        <DataGridTextColumn Width="*" Header="Ampere" Binding="{Binding Ampere}" />
+                        <DataGridTextColumn Width="*" Header="Lokation" Binding="{Binding EventLokation}" />
+                        <DataGridTextColumn Width="*" Header="Event" Binding="{Binding EventName}" />
+                        <DataGridTextColumn Width="*" Header="Status" Binding="{Binding Status}" />
+                        <DataGridTextColumn Width="*" Header="Afleveret" Binding="{Binding Afleveret}" />
+                        <DataGridTextColumn Width="*" Header="WebShop Nr." Binding="{Binding WebShopVarenummer}" />
+                        <DataGridTextColumn Width="*" Header="Pin Nr." Binding="{Binding PinNr}" />
+                        <DataGridTextColumn Width="*" Header="Container" Binding="{Binding Container}" />
+                    </DataGrid.Columns>
+
+
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Margin" Value="0,0,10,0"/>
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Foreground" Value="LightGray"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+
+                </DataGrid>
+
+                <!-- ...................................... Tilbehør grid til oversigt af udlånt tilbehør .......................................... -->
+                <!-- Det normale vare datagrid skal være collapsed, så de ikke overlapper hindanden. Mangler fix -->
+
+                <Border
+                Grid.Row="1"
+                Grid.Column="1"
+                Visibility="Collapsed"
+                Name="TilbehørBorder"
+                Padding="1"
+                CornerRadius="25"
+                BorderThickness="0"
+                BorderBrush="#FF008D7A"
+                SnapsToDevicePixels="True"
+                Background="#FF002657"
+                Opacity="0.5"
+                Margin="20,5,20,5"
+            >
+
+                    <Border.Effect>
+                        <DropShadowEffect></DropShadowEffect>
+                    </Border.Effect>
+                </Border>
+
+
+                <DataGrid Grid.Row="1"
+                      Grid.Column="1"
+                      Visibility="Collapsed"
+                      Name = "Scan_Page_TilbehørGrid"
+                      AutoGenerateColumns = "False"
+                      Background="Transparent"
+                      RowBackground="Transparent"
+                      Foreground="White"
+                      BorderBrush="{x:Null}"
+                      Margin="40,55,20,0"
+                      MouseDoubleClick="Vare_MouseDoubleClick"
+                      IsReadOnly="True"
+
+            >
+
+
+                    <DataGrid.Columns>
+
+
+                        <DataGridTextColumn Width="*" Binding="{Binding VareNavn}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Vare Navn" TextWrapping="Wrap"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="*" Binding="{Binding Antal}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Antal" TextWrapping="Wrap"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="*" Binding="{Binding Events}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Event" TextWrapping="Wrap"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="*" Binding="{Binding Lokation}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Lokation" TextWrapping="Wrap"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="*" Binding="{Binding Status}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="Status" TextWrapping="Wrap"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                    </DataGrid.Columns>
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Foreground" Value="White"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+
+                </DataGrid>
+
+                <!-- ...........................................Event liste under....................................... -->
+
+                <Grid x:Name="sidePannel" Grid.Row="1" RenderTransformOrigin="0.5,0.5">
+                    <Border
+                Grid.Row="1"
+                Grid.Column="0"
+                Padding="1"
+                CornerRadius="25"
+                BorderThickness="0"
+                BorderBrush="#FF008D7A"
+                SnapsToDevicePixels="True"
+                Background="#FF002657"
+                Opacity="0.5"
+                Margin="20,5,20,5"
+            >
+
+                        <Border.Effect>
+                            <DropShadowEffect></DropShadowEffect>
+                        </Border.Effect>
+                    </Border>
+
+
+
+                    <Label Grid.Column="0" Grid.Row="1"
+                   Name="EventsTxt"
+                   Content="Events"
+                   FontSize="16"
+                   Foreground="LightGray"
+                   HorizontalAlignment="Center"
+                   VerticalContentAlignment="Top"
+                   FontWeight="Bold"
+                   Margin="0,15,0,0"
+
+            />
+
+                    <CheckBox x:Name="aktivCheck" Margin="222,24,82,0" Grid.Column="0" Grid.Row="1" Unchecked="aktivCheck_Unchecked" Checked="aktivCheck_Checked"/>
+
+
+
+                    <!-- ..............................................Lokation og Event switch and content......................... -->
+
+
+                    <ScrollViewer Grid.Column="0" Grid.Row="1"
+                          Margin="30,45,30,10"
+                          Name="EventScroll"
+                          VerticalScrollBarVisibility="Auto"
+                          >
+
+                        <StackPanel Name="EventStackPanel"
+                            RenderTransformOrigin="0.489,0.659"
+                            Margin="21,30,10,0"
+                />
+                    </ScrollViewer>
+
+                    <ScrollViewer Grid.Column="0" Grid.Row="1"
+                          Margin="30,45,30,10"
+                          Name="LokationScroll"
+                          Visibility="Collapsed"
+                          VerticalScrollBarVisibility="Auto"
+            >
+                        <StackPanel Name="LokationStackPanel"
+                            RenderTransformOrigin="0.489,0.659"
+                            Margin="21,30,10,0"
+                />
+                    </ScrollViewer>
+
+
+                </Grid>
+
+
+
+
+                <!-- ...............................................Knappe section under................................................. -->
+
+                <Grid Grid.Column="2" Grid.Row="0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+
+                    </Grid.RowDefinitions>
+
+                    <Border
+                    Grid.Row="0"
+
+                    Grid.Column="1"
+
+
+                    Padding="1"
+                    CornerRadius="25"
+                    BorderThickness="0"
+                    BorderBrush="#FF008D7A"
+                    SnapsToDevicePixels="True"
+                    Background="#FF002657"
+                    Opacity="0.5"
+                    Margin="10,5,20,5.2"
+                >
+
+                        <Border.Effect>
+                            <DropShadowEffect/>
+                        </Border.Effect>
+                    </Border>
+
+
+                    <Grid Grid.Row="0"
+                      Grid.Column="0"
+                />
+                    <Grid Grid.Row="0"
+                      Grid.Column="1"
+                />
+                    <Border
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Padding="1"
+                    CornerRadius="25"
+                    BorderThickness="0"
+                    BorderBrush="#FF008D7A"
+                    SnapsToDevicePixels="True"
+                    Background="#FF002657"
+                    Opacity="0.5"
+                    Margin="170,5,35,5.2"
+            >
+
+                        <Border.Effect>
+                            <DropShadowEffect/>
+                        </Border.Effect>
+                    </Border>
+
+                    <WrapPanel  Grid.Row="0" Grid.Column="0"
+                            Orientation="Vertical"
+                            x:Name="Button_Maneger"
+                            Margin="202,11,29,8.2"
+                >
+                        <StackPanel Focusable="False" >
+                            <Label Content="Rediger" Foreground="LightGray" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center"/>
+                            <Button x:Name="fdg" FontSize="14" Content="Historik" Click="Historik_Click" Style="{DynamicResource NewScanBtn}" />
+                            <!-- <Button x:Name="gjhfdk" Content=" Vælg Udlejnings Lokalition" Style="{DynamicResource NewScanBtn}" /> -->
+                            <!-- <Button x:Name="hgasdkul" Content="Indstil RFID" Style="{DynamicResource NewScanBtn}"  /> -->
+                            <Button x:Name="LokationsBtn" FontSize="14" Content="Ændre Lokation" Style="{DynamicResource NewScanBtn}" Click="LokationsBtn_Click" />
+                            <Button x:Name="AddLokationsBtn2" FontSize="14" Content="Tilføj Lokation" Style="{DynamicResource NewScanBtn}" Click="AddLokationsBtn2_Click" />
+                            <!-- <Button  x:Name="TempBtn" Content="Scan" Click="Scan_Click" Style="{DynamicResource NewScanBtn}"/> -->
+                            <Button  x:Name="SeekstraTilbehørBtn" FontSize="14" Content="Vis Udlejet Tilbehør"  Style="{DynamicResource NewScanBtn}" Click="TilbehørGridKanpBtn_Click"/>
+                            <Button x:Name="TilføjTilbehør" FontSize="14" Content="Ekstra Tilbehør" Style="{DynamicResource NewScanBtn}" Click="EkstraTilbehør_Click" Focusable="False"/>
+                        </StackPanel>
+                        <StackPanel x:Name="ScannerPanel" Focusable="False">
+                            <Label Content="Scanner" Foreground="LightGray" FontWeight="Bold" HorizontalAlignment="Center" FontSize="16"/>
+                            <Button  x:Name="ScannerBtn" FontSize="14" Content="Start Scanner" Click="StartScannerBtn1_Click" Style="{DynamicResource NewScanBtn}"/>
+                            <Button  x:Name="AfleveretBtn" FontSize="14" Content="Afleveret Vare"  Style="{DynamicResource NewScanBtn}" Click="AfleveretBtn_Click"/>
+                            <Button x:Name="ScannerIndstillinger" FontSize="14" Content="Scanner Indstillinger" Style="{DynamicResource NewScanBtn}" Click="ScannerIndstillinger_Click" />
+                            <!--<Button x:Name="windowprove" Content="Tilføj Ekstra Tilbehør" Style="{DynamicResource       NewScanBtn}" Click="prove_Click" />-->
+                            <Button x:Name="FjernVareBtn" FontSize="14" Content="Aflevere/Udlej vare" Style="{DynamicResource NewScanBtn}" Click="FjernVare_Click"/>
+                        </StackPanel>
+                    </WrapPanel>
+
+
+                    <StackPanel Grid.Column="1" Grid.Row="0"
+                            Margin="25,0,0,0">
+
+                        <Label
+                        Content="Scanner OFF!"
+                        x:Name="Scanner_Laben"
+
+                        HorizontalAlignment="Center"
+                        FontSize="35"
+                        Foreground="REd"
+                        BorderBrush="black"
+                        FontWeight="Bold"
+                    />
+
+                        <Label x:Name="UdHjem"
+                           Content="Udlejning"
+                           FontSize="20"
+                           Foreground="Orange"
+                           HorizontalAlignment="Center"
+                           FontWeight="Bold"/>
+
+                        <Label
+                        Content="Event:"
+                        x:Name="EventNameLaben"
+                        Margin="0,0,0,0"
+                        FontSize="25"
+                        Foreground="LightGray"
+                        BorderBrush="black"
+                        FontWeight="Bold"
+
+                    />
+                        <Label
+                        Content="Lokation:"
+                        x:Name="LokationNameLaben"
+                        Margin="0,0,0,0"
+                        FontSize="25"
+                        Foreground="LightGray"
+                        BorderBrush="black"
+                        FontWeight="Bold"
+
+                    />
+                        <CheckBox  x:Name="UserCheckBox" Foreground="SteelBlue" Content="Brug Hjælper Id"  FontWeight="Bold" IsChecked="False" IsThreeState="False"  
+                               Checked="UserId_Checked" Unchecked="UserId_Unchecked" >
+                            <CheckBox.LayoutTransform>
+                                <ScaleTransform ScaleX="2.5" ScaleY="2.5" />
+                            </CheckBox.LayoutTransform>
+                        </CheckBox>
+
+                        <CheckBox  x:Name="AktivScannerBox" Foreground="SteelBlue" Margin="0,10,0,0" Content="Scanner Aktiv"  FontWeight="Bold" IsChecked="False" IsThreeState="False"
+                               Checked="AktivScannerBox_Checked" Unchecked="AktivScannerBox_Unchecked" >
+                            <CheckBox.LayoutTransform>
+                                <ScaleTransform ScaleX="2.5" ScaleY="2.5" />
+                            </CheckBox.LayoutTransform>
+                        </CheckBox>
+                    </StackPanel>
+                    <fa:ImageAwesome x:Name="TilbageKnapEvent" Icon="ChevronCircleLeft" Height="64" Width="81" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="543,0,16,187" Foreground="White" MouseDown="TilbageKnapEvent_MouseDown" MouseEnter="TilbageKnapEvent_MouseEnter" MouseLeave="TilbageKnapEvent_MouseLeave" Grid.Column="1" />
+                </Grid>
+            </Grid>
+
+            <!-- ************************** SKANNER INDSTILLINGER ************************* -->
+            <Border Name="ScannerIndstillingerBorder" Background="#4F000000" Visibility="Collapsed">
+                <Border x:Name="ScannerSetBorder2" Margin="331,206,398.4,248" Background="#FF002657" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3">
+                    <Grid KeyboardNavigation.TabNavigation="Cycle" KeyboardNavigation.ControlTabNavigation="Cycle" KeyboardNavigation.DirectionalNavigation="Cycle">
+                        <StackPanel HorizontalAlignment="Left"  Margin="20,20,0,0">
+                            <Button x:Name="SetPowerKnapSkan" Focusable="True" Content="Ændre Styrke" Margin="0,0,0,0" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="220" Style="{DynamicResource eventBtn}" Height="60" FontSize="25" FontWeight="Bold" BorderThickness="0" Foreground="#FFFFFF" Click="SetPowerKnapSkan_Click"/>
+                            <Button x:Name="ChangeScannerIPKnapSkan" Content="Ændre Scanner IP" Margin="0,20,0,0" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="220" Style="{DynamicResource eventBtn}" Height="60" FontSize="25" FontWeight="Bold" BorderThickness="0" Foreground="#FFFFFF" Click="ChangeScannerIPKnapSkan_Click"/>
+                        </StackPanel>
+                        <Button x:Name="SkjulScannerIndstillinger" Focusable="True" Content="X" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="34" Foreground="Red" Background="#FF474747" FontWeight="Bold" FontSize="24" Click="SkjulScannerIndstillinger_Click"/>
+
+                        <Border x:Name="changeStyrkeBorder" Visibility="Collapsed" Background="#FF002657" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3">
+                            <Grid KeyboardNavigation.TabNavigation="Cycle" KeyboardNavigation.ControlTabNavigation="Cycle" KeyboardNavigation.DirectionalNavigation="Cycle">
+                                <Label Content="Ændre Signal Styrke" HorizontalAlignment="Center" Margin="0,15,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="36"/>
+                                <Label Name="AntennaPowerLabel" Content="200" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="80,0,0,0" Foreground="White" FontWeight="Bold"/>
+                                <Label Content="Styrke: " HorizontalAlignment="Center" Margin="0,0,80,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="30"/>
+                                <Slider Maximum="300" Minimum="10" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" Name="userAntennaPower" Value="200" VerticalAlignment="Bottom" Margin="0,0,0,20" ValueChanged="userAntennaPower_ValueChanged" />
+                                <Button x:Name="SkjulStyrkeBorder" Focusable="True" Content="X" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="34" Foreground="Red" Background="#FF474747" FontWeight="Bold" FontSize="24" Click="SkjulStyrkeBorder_Click"/>
+                            </Grid>
+                        </Border>
+
+                        <Border x:Name="changeScannerIPSkanPage" Visibility="Collapsed" Background="#FF002657" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3">
+                            <Grid KeyboardNavigation.TabNavigation="Cycle" KeyboardNavigation.ControlTabNavigation="Cycle" KeyboardNavigation.DirectionalNavigation="Cycle">
+                                <Label Content="Ændre Scanner IP" HorizontalAlignment="Center" Margin="0,15,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="36"/>
+                                <TextBox x:Name="scannerIPTextBox" HorizontalAlignment="Center" Height="60" TextWrapping="Wrap" Text="192.168.2.60" VerticalAlignment="Center" Width="300" FontSize="36"/>
+                                <Button x:Name="SkjulIPChanger" Content="X" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="34" Foreground="Red" Background="#FF474747" FontWeight="Bold" FontSize="24" Click="SkjulIPChanger_Click"/>
+                                <Button x:Name="GemChangedIP" Content="Gem" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="35" FontWeight="Bold" BorderThickness="0" Foreground="#FFFFFF" Style="{DynamicResource eventBtn}" Margin="25,0,0,25" Height="50" Width="150" Click="GemChangedIP_Click"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Border>
+            </Border>
+
+            <!--******************* TILFØJ LOAKTION *********************-->
+            <Border Name="AddLokationQuick" Background="#4F000000" Visibility="Collapsed">
+                <Border x:Name="AddLokationQuick2" Visibility="Visible" Margin="400,200,400,300" Background="#FF002657" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3">
+                    <Grid KeyboardNavigation.TabNavigation="Cycle" KeyboardNavigation.DirectionalNavigation="Cycle" KeyboardNavigation.ControlTabNavigation="Cycle">
+                        <Button x:Name="AnnulerQuickAddLocation" Content="X" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="34" Foreground="Red" Background="#FF474747" FontWeight="Bold" FontSize="24" Click="AnnulerQuickAddLocation_Click"/>
+                        <TextBox x:Name="QuickAddLocationTxtBox" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,0,0,0" TextWrapping="Wrap" Text="" Width="250" FontSize="36" KeyDown="QuickAddLocationTxtBox_KeyDown"/>
+                        <Button x:Name="GemLokationButton" Content="Gem" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="35" FontWeight="Bold" BorderThickness="0" Foreground="#FFFFFF" Style="{DynamicResource eventBtn}" Margin="0,0,50,0" Height="50" Width="150" Click="GemLokationButton_Click"/>
+
+                        <!--<Border x:Name="changeStyrkeBorder" Visibility="Collapsed" Background="#FF002657" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3">
+                            <Grid>
+                                <Label Content="Ændre Signal Styrke" HorizontalAlignment="Center" Margin="0,15,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="36"/>
+                                <Label Name="AntennaPowerLabel" Content="200" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="80,0,0,0" Foreground="White" FontWeight="Bold"/>
+                                <Label Content="Styrke: " HorizontalAlignment="Center" Margin="0,0,80,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="30"/>
+                                <Slider Maximum="300" Minimum="10" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" Name="userAntennaPower" Value="200" VerticalAlignment="Bottom" Margin="0,0,0,20" ValueChanged="userAntennaPower_ValueChanged" />
+                                <Button x:Name="SkjulStyrkeBorder" Content="X" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="34" Foreground="Red" Background="#FF474747" FontWeight="Bold" FontSize="24" Click="SkjulStyrkeBorder_Click"/>
+                            </Grid>
+                        </Border>-->
+                    </Grid>
+                </Border>
+            </Border>
+
+
+            <Border Name="HistorikGrid" Background="#4F000000" Visibility="Collapsed">
+                <Border  Margin="400,200,400,458" Background="#FF002657" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3">
+                    <Grid KeyboardNavigation.TabNavigation="Cycle" KeyboardNavigation.DirectionalNavigation="Cycle" KeyboardNavigation.ControlTabNavigation="Cycle">
+                        <Button x:Name="lukHistorik" Focusable="True" Content="X" HorizontalAlignment="Right" Margin="0,9,10,0" VerticalAlignment="Top" Width="34" Foreground="Red" Background="#FF474747" FontWeight="Bold" FontSize="24" Click="lukHistorik_Click" />
+                        <DataGrid
+                              Name = "HistorikPage_DataGrid" 
+                              AutoGenerateColumns = "False" 
+                              Background="Transparent" 
+                              RowBackground="Transparent" 
+                              Foreground="White"  
+                              BorderBrush="{x:Null}" 
+                              Margin="28,55,32,0"
+                              IsReadOnly="True"
+                              >
+
+
+                            <DataGrid.Columns>
+
+
+                                <DataGridTextColumn Width="*" Binding="{Binding VareNr}">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock Text="Vare Nr." TextWrapping="Wrap"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Width="*" Binding="{Binding Beskrivelse}">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock Text="Beskrivelse" TextWrapping="Wrap"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+
+
+                                <DataGridTextColumn Width="*" Binding="{Binding Antal}">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock Text="Sted" TextWrapping="Wrap"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+
+                                <!-- Combo box Bindings og set up! -->
+                                <DataGridTextColumn Width="*" Binding="{Binding Status}">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock Text="Sted" TextWrapping="Wrap"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                                <!-- ............................... -->
+
+
+
+                                <DataGridTextColumn Width="*" Binding="{Binding VareLokation}">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock Text="Lokation" TextWrapping="Wrap"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+
+
+                                <DataGridTextColumn Width="*" Binding="{Binding Ampere}">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock Text="Ampere" TextWrapping="Wrap"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Width="*" Binding="{Binding PinNr}">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock Text="Pin Nr." TextWrapping="Wrap"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Width="*" Binding="{Binding Længde}">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock Text="længde" TextWrapping="Wrap"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Width="*" Binding="{Binding WebshopVareNummer}">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock Text="Webshop Nr." TextWrapping="Wrap"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Width="*" Binding="{Binding RFIDNummer}">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock Text="RFID Nr." TextWrapping="Wrap"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Width="*" Binding="{Binding Note}">
+                                    <DataGridTextColumn.Header>
+                                        <TextBlock Text="Note" TextWrapping="Wrap"/>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+
+                            </DataGrid.Columns>
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
+
+                        </DataGrid>
+                        <!--<Border x:Name="changeStyrkeBorder" Visibility="Collapsed" Background="#FF002657" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3">
+                            <Grid>
+                                <Label Content="Ændre Signal Styrke" HorizontalAlignment="Center" Margin="0,15,0,0" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="36"/>
+                                <Label Name="AntennaPowerLabel" Content="200" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="80,0,0,0" Foreground="White" FontWeight="Bold"/>
+                                <Label Content="Styrke: " HorizontalAlignment="Center" Margin="0,0,80,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="30"/>
+                                <Slider Maximum="300" Minimum="10" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" Name="userAntennaPower" Value="200" VerticalAlignment="Bottom" Margin="0,0,0,20" ValueChanged="userAntennaPower_ValueChanged" />
+                                <Button x:Name="SkjulStyrkeBorder" Content="X" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="34" Foreground="Red" Background="#FF474747" FontWeight="Bold" FontSize="24" Click="SkjulStyrkeBorder_Click"/>
+                            </Grid>
+                        </Border>-->
+                    </Grid>
+                </Border>
+            </Border>
+
+            <!-- ......................................................Lokations Grid til at add og fjerne lokationer på eventes...................  -->
+            <Border Name="MultiGrid" Background="#4F000000" Visibility="Collapsed">
+                <Grid Name="MultiGrid2"
+             Margin="200,100,200,100">
+                    <Border
+               Padding="1"
+               CornerRadius="25"
+               BorderThickness="0"
+               BorderBrush="#FF008D7A"
+               SnapsToDevicePixels="True"
+               Background="#FF002657"
+           >
+
+                        <Border.Effect>
+                            <DropShadowEffect></DropShadowEffect>
+                        </Border.Effect>
+
+                    </Border>
+
+
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+
+
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0"
+                          Grid.Column="0"
+                    />
+
+                        <Grid Grid.Row="0"
+                          Grid.Column="1"
+                    />
+                        <Grid Grid.Row="0"
+                          Grid.Column="2"
+                    />
+
+
+
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <StackPanel Grid.Column="0"
+                                Name="EditLokationStack"
+                                Margin="15,15,15,15">
+
+                            </StackPanel>
+                        </ScrollViewer>
+
+
+                        <Grid Grid.Column="1">
+
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.2*"/>
+                                <RowDefinition Height="0.2*"/>
+                                <RowDefinition Height="*"/>
+
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Grid.Column="0" Grid.Row="2" Name="TryhardStack"></StackPanel>
+
+                            <Label  Grid.Row="0"
+                               Name="EventLabel"
+                               Content="Event:"
+                               Foreground="red"
+                               FontSize="45"
+                               HorizontalAlignment="Center"
+                        >
+
+                            </Label>
+                            <Grid Grid.Row=" 1" Margin="0,0,-226,0" RenderTransformOrigin="0.312,0.543">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="0.6*" />
+                                </Grid.ColumnDefinitions>
+
+
+                                <TextBox
+                                  Margin="15,24,15,17"
+                                  FontSize="20"
+                                  Background="#EEE"
+                                  BorderThickness="3"
+                                  Name="AddTxt" KeyDown="AddTxt_KeyDown"/>
+
+                                <Button Grid.Column="1" Margin="15,15,15,15" x:Name="AddLokationsBtn" Content="Ændre" Style="{DynamicResource eventBtn}" RenderTransformOrigin="0.5,0.5" Click="AddLokationsBtn_Click"/>
+
+
+                                <!--<Button Grid.Column="1"
+                                Margin="15,15,15,15"
+                                Name="AddLokationsBtn"
+                                Content="Ændre"
+                                Style="{DynamicResource eventBtn}"
+
+                                Background="#FF008D7A"
+                                Foreground="White"
+                                Click="AddLokationsBtn_Click"
+                                RenderTransformOrigin="0.5,0.5">
+
+                            </Button>-->
+
+
+                            </Grid>
+                        </Grid>
+
+                        <Button Grid.Column="2" Grid.Row="2"
+
+                            Name="EndGrid"
+                            Content="Afslut"
+                            Style="{DynamicResource NewScanBtn}"
+                            Height="50"
+                            Width="200"
+                            Click="EndGrid_Click"
+                            VerticalAlignment="Bottom"
+                            Margin="0,0,0,25"
+                    ></Button>
+
+                    </Grid>
+                </Grid>
+            </Border>
+
+
+            <!--...............................Popup til at udleje/aflevere tilbehør, tilbehør griddet.......................................-->
+            <Border Name="TilbehørGrid" Background="#4F000000" Visibility="Collapsed" >
+                <Grid
+                    Margin="650,200,650,200"
+                    Name="TilbehørGrid2"
+                    KeyboardNavigation.ControlTabNavigation="Cycle" 
+                    KeyboardNavigation.DirectionalNavigation="Cycle"
+                    Focusable="True"
+                    
+           >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.35*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="0.4*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="0.4*" />
+                        <ColumnDefinition Width="0.35*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.30*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="0.30*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border
+                Grid.Column="0"
+                Grid.ColumnSpan="6"
+                Grid.RowSpan="3"
+                Padding="1"
+               CornerRadius="25"
+               BorderThickness="0"
+               BorderBrush="#FF008D7A"
+               SnapsToDevicePixels="True"
+               Background="#FF002657"
+           >
+
+                        <Border.Effect>
+                            <DropShadowEffect></DropShadowEffect>
+                        </Border.Effect>
+
+                    </Border>
+                    <StackPanel
+                Grid.Column="1"
+                Grid.Row="0"
+                Grid.ColumnSpan="4"
+                        >
+
+                        <Label
+                Name="TilbehørGridLabel"
+                Foreground="white"
+                FontSize="22"
+                FontWeight="Bold"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="Tilføj tilbehør manuelt"
+            ></Label>
+
+                        <Label
+                    Name="TilbehørEventLabel"
+                    Foreground="white"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Content="Event:"
+                ></Label>
+
+                        <Label
+                    Name="TilbehørLokationLabel"
+
+                    Foreground="white"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Content="Lokation: "
+                ></Label>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1"
+                        Grid.Row="1"
+                        Name="MotherOfAllStacksLabel1"
+                        HorizontalAlignment="Center"
+                        ></StackPanel>
+                    <StackPanel Grid.Column="2"
+                       Grid.Row="1"
+                       Name="MotherOfAllStacksCombo1"
+                       HorizontalAlignment="Center"
+                    ></StackPanel>
+                    <StackPanel Grid.Column="3"
+                        Grid.Row="1"
+                        Name="MotherOfAllStacksLabel2"
+                        HorizontalAlignment="Center"
+            ></StackPanel>
+                    <StackPanel Grid.Column="4"
+                        Grid.Row="1"
+                        Name="MotherOfAllStacksCombo2"
+                        HorizontalAlignment="Center"
+            ></StackPanel>
+
+
+
+                    <StackPanel Grid.Column="1"
+                        Grid.Row="2"
+                        Grid.ColumnSpan="4"
+                        >
+                        <Button
+
+                        Name="AfleverUdlejTilbehør"
+                        Content="Udlej/Aflever"
+                        Click="TilbehørSkiftMode"
+                        Style="{DynamicResource NewScanBtn}"
+                >
+
+                        </Button>
+                        <Button
+                        Style="{DynamicResource NewScanBtn}"
+                        Name="ScanTilbehørButton"
+                        Content="Udlej tilbehør"
+                        Click="ScanTilbehør"
+                >
+                        </Button>
+                        <Button
+                        Style="{DynamicResource NewScanBtn}"
+                        Name="BackScanTilbehørButton"
+                        Content="Tilbage"
+                        Click="BackScanTilbehørButton_OnClickScanTilbehør"
+                >
+                        </Button>
+
+                    </StackPanel>
+
+
+
+
+
+
+
+
+
+
+                </Grid>
+            </Border>
+            <Grid Name="TilføjRfidTilVAreNummer" Visibility="Collapsed">
+                <Grid.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.5"/>
+                </Grid.Background>
+
+
+                <Grid Height="250" Width="400">
+                    <Border Grid.RowSpan="3"
+                Padding="1"
+                CornerRadius="25"
+                BorderThickness="0"
+                BorderBrush="#FF008D7A"
+                SnapsToDevicePixels="True"
+                Background="#FF002657"
+                >
+
+                        <Border.Effect>
+                            <DropShadowEffect></DropShadowEffect>
+                        </Border.Effect>
+
+                    </Border>
+                    <StackPanel Name="TRTVNS" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0">
+                        <Label Content="Tilføj Rfid til varenummer:" Foreground="Yellow" FontSize="25"></Label>
+                        <TextBox Name="TRTVNSTxt"></TextBox>
+                        <Button Name="TRTVNSBtn" Content="Tilføj" Style="{DynamicResource NewScanBtn}" Click="TRTVNSBtn_Click"></Button>
+                        <Button Name="Cansel" Content="Anuller" Style="{DynamicResource NewScanBtn}" Click="Cansel_Click"></Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <Border Name="editStatusGrid" Background="#4F000000" Visibility="Collapsed" >
+                <Border
+                    Grid.Column="0"
+                    Grid.ColumnSpan="6"
+                    Grid.RowSpan="3"
+                    Padding="1"
+                   CornerRadius="30"
+                   BorderThickness="0"
+                   BorderBrush="#FF008D7A"
+                   SnapsToDevicePixels="True"
+                   Background="#FF002657" Margin="658,301,511,373"
+                    >
+
+                    <Border.Effect>
+                        <DropShadowEffect></DropShadowEffect>
+                    </Border.Effect>
+                    <Grid KeyboardNavigation.TabNavigation="Cycle" KeyboardNavigation.DirectionalNavigation="None">
+                        <Label Foreground="White" FontSize="24" Margin="275,65,274,287" FontWeight="Bold">Ret Vare status</Label>
+                        <Label Foreground="White" FontSize="20" Margin="310,117,313,243">Vælge status</Label>
+                        <ComboBox Name="statusCombo" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="262,180,259,186">
+                            <ComboBoxItem>Hjemme</ComboBoxItem>
+                            <ComboBoxItem >Udlånt</ComboBoxItem>
+                            <ComboBoxItem>Beskadigt</ComboBoxItem>
+                            <ComboBoxItem>Ødelagt</ComboBoxItem>
+                            <ComboBoxItem>Bortkommet</ComboBoxItem>
+                        </ComboBox>
+                        <Button x:Name="confirmStatus" Style="{DynamicResource NewScanBtn}" Foreground="White" Height="50" Width="Auto" Margin="132,280,413,74" Click="confirmStatus_Click" >Gem Status</Button>
+                        <Button x:Name="annullerStatus" Style="{DynamicResource NewScanBtn}" Foreground="White" Height="50" Width="Auto" Margin="420,280,125,74" Click="annullerStatus_Click">Annuller</Button>
+                    </Grid>
+                </Border>
+            </Border>
+            <!-- Grid der indeholder loading screen  -->
+            <Grid Name="LoadingGrid" Visibility="Collapsed">
+                <Grid.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.5"/>
+                </Grid.Background>
+
+                <TextBlock
+                Name="LoadingText"
+                Margin="20" 
+                FontSize="72" FontWeight="Bold" Foreground="Yellow"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                Forbinder til Scanner
+
+                <!-- animere text block's opacity. -->
+                    <TextBlock.Triggers>
+                        <EventTrigger RoutedEvent="TextBlock.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                    Storyboard.TargetName="LoadingText" 
+                                    Storyboard.TargetProperty="(TextBlock.Opacity)"
+                                    From="1.0" To="0.0" Duration="0:0:2"
+                                    AutoReverse="True" RepeatBehavior="Forever" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </TextBlock.Triggers>
+                </TextBlock>
+
+            </Grid>
+
+
+
+        </Grid>
+    </Viewbox>
+
+</Page>
+<!-- CornerRadius="5"
+
+    Padding="5"
+
+    BorderThickness="1"
+
+    SnapsToDevicePixels="True"
+
+    Background="#FF008D7A"
+
+    <Grid
+              Name="StatudGrid"
+              Margin="450,150,450,350"
+        >
+
+
+            <Border
+
+                Padding="1"
+                CornerRadius="25"
+                BorderThickness="0"
+                BorderBrush="#FF008D7A"
+                SnapsToDevicePixels="True"
+                Background="#FF002657"
+
+            >
+
+                <Border.Effect>
+                    <DropShadowEffect></DropShadowEffect>
+                </Border.Effect>
+
+            </Border>
+
+
+
+
+
+            <ComboBox Name="dropdown"
+                      Margin="50,50,50,180"
+                      FontSize="22"
+                      HorizontalContentAlignment="Center"
+
+                      >
+                <ComboBoxItem>Hjemme</ComboBoxItem>
+                <ComboBoxItem>Udlånt</ComboBoxItem>
+                <ComboBoxItem>Beskadigt</ComboBoxItem>
+                <ComboBoxItem>Ødelagt</ComboBoxItem>
+                <ComboBoxItem>Bortkommet</ComboBoxItem>
+            </ComboBox>
+            <Button Name="confirmSelection" Content="Bekræft" Margin="10,308,457,22" ></Button>
+            <Button Name="cancelSelection" Content="Afbryd" Margin="457,308,10,22"></Button>
+        </Grid>
+
+
+
+    <DataGridTextColumn Width="*" Binding="{Binding Status}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Status" TextWrapping="Wrap"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
+
+    <ComboBox Text="hejsa" Name="StatusCombo" Margin="2" SelectedItem="{Binding Status}" ItemsSource="{Binding StatusList}"/>
+
+    <DataGridTemplateColumn  Header="Status" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox x:Name="StatusCombo"  SelectionChanged="dropdown_SelectionChanged">
+                                    <ComboBoxItem>Hjemme</ComboBoxItem>
+                                    <ComboBoxItem>Udlånt</ComboBoxItem>
+                                    <ComboBoxItem>Beskadigt</ComboBoxItem>
+                                    <ComboBoxItem>Ødelagt</ComboBoxItem>
+                                    <ComboBoxItem>Bortkommet</ComboBoxItem>
+                                </ComboBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+
+    -->

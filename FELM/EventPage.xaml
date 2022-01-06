@@ -1,0 +1,807 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:FELM"
+      xmlns:syncfusion="http://schemas.syncfusion.com/wpf" xmlns:fa="http://schemas.fontawesome.io/icons/" x:Class="FELM.EventPage"
+      mc:Ignorable="d"
+      d:DesignHeight="768" d:DesignWidth="1366"
+
+      Loaded="Onload"
+      Title="EventPage"
+   >
+
+    <Viewbox Stretch="Fill">
+
+        <Grid Height="768" Width="1366" >
+            <Grid.Background>
+                <ImageBrush ImageSource="Pic/festival_1.png"/>
+            </Grid.Background>
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="456*" />
+                    <ColumnDefinition Width="245*" />
+                    <ColumnDefinition Width="666*"/>
+
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="31*" />
+                    <RowDefinition Height="65*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Column="0" Grid.Row="0" Margin="10,0,55,59">
+                    <Image Source="logo_festival-el.png"></Image>
+                    <fa:ImageAwesome x:Name="TilbageKnapEvent" Icon="ChevronCircleLeft" Height="48" Width="48" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="1282,0,-939,111" Foreground="White" MouseDown="TilbageKnapEvent_MouseDown" MouseEnter="TilbageKnapEvent_MouseEnter" MouseLeave="TilbageKnapEvent_MouseLeave" />
+                    <!-- Page Header -->
+                    <!--<TextBox Height="50" Width="160" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="40,0,0,0" Background="Transparent" Text="Event Page" FontSize="30" FontWeight="Bold" Foreground="SteelBlue" BorderThickness="0"></TextBox>-->
+                </Grid>
+
+                <Grid Grid.Row="0"
+              Grid.Column="0"
+        />
+                <Grid Grid.Row="1"
+              Grid.Column="0"
+        />
+
+                <Grid Grid.Row="0" Grid.ColumnSpan="3" Margin="310,-5,146,5"
+        />
+                <Grid Grid.Row="1"
+              Grid.Column="1" Grid.ColumnSpan="2"
+        />
+
+
+                <WrapPanel Name="EventButtons" Visibility="Visible" Margin="64,32,331,98" Grid.Row="0"  Grid.Column="2" >
+
+                    <Button x:Name="LokationListe" Content="Lokation liste" Style="{DynamicResource eventBtn}" Margin="2" Click="Lokation_button"/>
+                    <Button x:Name="events" Content="Events" Style="{DynamicResource eventBtn}" Margin="2" Click="Start_Events"/>
+                    <Button x:Name="addLokation" Content="Tilføj Lokation" Style="{DynamicResource eventBtn}" Margin="2" Click="addLokation_Click"/>
+
+                </WrapPanel>
+
+                <StackPanel Name="SpecificEventButtons1" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="130" Height="179" Grid.Row="0" Grid.Column="2" Margin="377,32,159,37"  Visibility="Collapsed">
+                    <Button Name="Ombytte" Content="Skift lokation" Style="{DynamicResource eventBtn}" Margin="0,1" Click="Ombytte_button" />
+                    <Button Name="ChangeStatusBorder" Content="Ændre Status" Style="{DynamicResource eventBtn}" Margin="0,1" Click="ChangeStatus_Button"/>
+                    <Button Name="KopierEvent_button" Content="Kopier Event" Style="{DynamicResource eventBtn}" Margin="0,1" Click="CopyEvent_Button"/>
+                </StackPanel>
+
+                <StackPanel Name="SpecificEventButtons2" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="130" Height="179" Grid.Row="0" Grid.Column="2" Margin="239,32,297,37"  Visibility="Collapsed">
+
+                    <Button x:Name="FølgeSeddelButton" Content="Lav Følgeseddel" Style="{DynamicResource eventBtn}" Margin="0,1" Click="seddel_button" />
+                    <Button x:Name="pdfButton" Content="Export til PDF" Style="{DynamicResource eventBtn}" Margin="0,1" Click="ExportPdf_Click" />
+                    <Button x:Name="GemEventCSV_Button" Content="Gem som CSV" Style="{DynamicResource eventBtn}" Margin="0,1" Click="ExportCsv_Click"/>
+
+
+
+
+
+
+                </StackPanel>
+
+
+
+
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    x:Name="EventsInputBorder"
+                    Padding="1"
+                    CornerRadius="25"
+                    BorderThickness="0"
+
+                    SnapsToDevicePixels="True"
+                    Margin="30">
+
+                    <Border.Effect>
+                        <DropShadowEffect/>
+                    </Border.Effect>
+
+                    <Border.BorderBrush>
+                        <SolidColorBrush Color="#FF008D7A" Opacity="0.5"/>
+                    </Border.BorderBrush>
+
+                    <Border.Background>
+                        <SolidColorBrush Color="#FF002657" Opacity="0.5"/>
+                    </Border.Background>
+
+
+
+                </Border>
+                <ScrollViewer Grid.Row="1" Grid.Column="0" x:Name="EventsBoxes" VerticalScrollBarVisibility="Auto" Visibility="Visible" Margin="30,60,30,50">
+                    <StackPanel Orientation="Vertical" x:Name="Events" Margin="14">
+                        <Label x:Name="Eventnavn"
+                                Content="*Event navn:"
+                                Foreground="LightGray"
+                                VerticalContentAlignment="Center"
+                                HorizontalContentAlignment="Left"
+                                FontWeight="Bold"
+                            />
+
+                        <Border Style="{DynamicResource eventBox}">
+                            <TextBox x:Name="EventName" Background="Transparent" BorderThickness="0" KeyDown="nextEnter"/>
+                        </Border>
+
+                        <Label x:Name="StartDato"
+                                Content="*Start Dato:"
+                                Foreground="LightGray"
+                                VerticalContentAlignment="Center"
+                                HorizontalContentAlignment="Left"
+                                FontWeight="Bold"
+                            />
+
+                        <Border Style="{DynamicResource eventBox}">
+                            <Grid>
+                                <!--<TextBox x:Name="StartDatoBox" Background="Transparent" BorderThickness="0" KeyDown="nextEnter"/>-->
+                                <DatePicker x:Name="DatePickerStart" FirstDayOfWeek="Monday" Text="Vælg en Dato!" SelectedDateChanged="DatePickerStart_SelectionChanged" CalendarClosed="DatePickerStart_CalendarClosed"></DatePicker>
+                            </Grid>
+                        </Border>
+
+                        <Label x:Name="SlutDato"
+                                Content="*Slut Dato:"
+                                Foreground="LightGray"
+                                VerticalContentAlignment="Center"
+                                HorizontalContentAlignment="Left"
+                                FontWeight="Bold"
+                            />
+
+                        <Border Style="{DynamicResource eventBox}">
+                            <Grid>
+                                <!--<TextBox x:Name="SlutDatoBox" Background="Transparent" BorderThickness="0" KeyDown="nextEnter"/>-->
+                                <DatePicker x:Name="DatePickerSlut" FirstDayOfWeek="Monday" Text="Vælg en Dato!" CalendarClosed="DatePickerSlut_CalendarClosed"></DatePicker>
+                            </Grid>
+                        </Border>
+
+                        <Label x:Name="Note"
+                                Content="Note:"
+                                Foreground="LightGray"
+                                VerticalContentAlignment="Center"
+                                HorizontalContentAlignment="Left"
+                                FontWeight="Bold"
+                            />
+
+                        <Border  Style="{DynamicResource eventBox}">
+                            <TextBox x:Name="NoteBox" Background="Transparent" BorderThickness="0" KeyDown="nextEnter"/>
+                        </Border>
+
+                        <Label x:Name="DieselstanderStart"
+                                Content="Diesel stander Start:"
+                                Foreground="LightGray"
+                                VerticalContentAlignment="Center"
+                                HorizontalContentAlignment="Left"
+                                FontWeight="Bold"
+                            />
+
+                        <Border Style="{DynamicResource eventBox}">
+                            <Grid>
+                                <TextBox x:Name="DieselstanderStartBox"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 PreviewTextInput="NumberValidation"
+                                 CommandManager.PreviewExecuted="textBox_PreviewExecuted"
+                                 ContextMenu="{x:Null}"
+                                 KeyDown="nextEnter"/>
+                            </Grid>
+
+                        </Border>
+
+                        <Label x:Name="DielselstanderSlut"
+                                Content="Dielsel stander Slut:"
+                                Foreground="LightGray"
+                                VerticalContentAlignment="Center"
+                                HorizontalContentAlignment="Left"
+                                FontWeight="Bold"
+
+                            />
+
+                        <Border Style="{DynamicResource eventBox}">
+                            <TextBox x:Name="DielselstanderSlutBox"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 PreviewTextInput="NumberValidation"
+                                 CommandManager.PreviewExecuted="textBox_PreviewExecuted"
+                                 ContextMenu="{x:Null}"
+                                 KeyDown="nextEnter"/>
+                        </Border>
+
+                        <Label x:Name="DefektePærer"
+                                Content="Defekte Pærer:"
+                                Foreground="LightGray"
+                                VerticalContentAlignment="Center"
+                                HorizontalContentAlignment="Left"
+                                FontWeight="Bold"
+                            />
+
+                        <Border Style="{DynamicResource eventBox}">
+                            <TextBox x:Name="DefektePærerBox"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 PreviewTextInput="NumberValidation"
+                                 CommandManager.PreviewExecuted="textBox_PreviewExecuted"
+                                 ContextMenu="{x:Null}"
+                                 KeyDown="nextEnter"/>
+                        </Border>
+
+
+                        <Label x:Name="TlfNummer"
+                                Content="Tlf Nummer:"
+                                Foreground="LightGray"
+                                VerticalContentAlignment="Center"
+                                HorizontalContentAlignment="Left"
+                                FontWeight="Bold"
+                            />
+                        <Border Style="{DynamicResource eventBox}">
+                            <TextBox x:Name="TlfNummerBox"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    PreviewTextInput="NumberValidation"
+                                    KeyDown="nextEnter"
+                                />
+                        </Border>
+
+                        <Label Name="Aktiv"
+                                Content="Aktiv:"
+                                Foreground="LightGray"
+                                VerticalContentAlignment="Center"
+                                HorizontalContentAlignment="Left"
+                                FontWeight="Bold"
+                            ></Label>
+
+
+                        <ComboBox HorizontalAlignment="Center" Name="AktivComboBox" KeyDown="nextEnterCombox"
+                            >
+                            <ComboBoxItem IsSelected="True">Ja</ComboBoxItem>
+                            <ComboBoxItem>Nej</ComboBoxItem>
+                        </ComboBox>
+
+                        <Label Name="brugerId"
+                                Content="Bruger Id:"
+                                Foreground="LightGray"
+                                VerticalContentAlignment="Center"
+                                HorizontalContentAlignment="Left"
+                                FontWeight="Bold"
+                            ></Label>
+
+
+                        <ComboBox HorizontalAlignment="Center" Name="brugerIdComboBox"
+                            >
+                            <ComboBoxItem IsSelected="True">Ja</ComboBoxItem>
+                            <ComboBoxItem>Nej</ComboBoxItem>
+                        </ComboBox>
+
+                        <Button Name="RedigerGem" Grid.Column="0" Grid.Row="1" Content="Gem redigering"  Style="{DynamicResource eventBtn}" Margin="0,10,0,0" Click="RedigerGem_button" Visibility="Collapsed" VerticalAlignment="Top"/>
+                        <Button Name="RedigerEventAnnuller" Grid.Column="0" Grid.Row="1" Content="Annuller"  Style="{DynamicResource eventBtn}" Margin="0,10,0,0" Click="AnnullerEventRedigering" Visibility="Collapsed" VerticalAlignment="Top"/>
+                        <Button Content="Tilføj Event" Name="addEvent" Grid.Column="0" Grid.Row="1" Style="{DynamicResource eventBtn}" Click="Tilføj_Button" Margin="0,10,0,0" Visibility="Visible" VerticalAlignment="Top" />
+
+                    </StackPanel>
+                </ScrollViewer>
+                <StackPanel
+                    Name="addLokationStack"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Orientation="Vertical"
+                    Margin="80,60"
+                    Visibility="Collapsed"
+                    >
+
+                    <Label Name="lokationAddLabel"
+                        Content="Lokation:"
+                        Foreground="LightGray"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Left"
+                        FontWeight="Bold"
+                    >
+                    </Label>
+                    <Border Style="{DynamicResource eventBox}">
+                        <TextBox Name="lokationAdd"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             KeyDown="tilføjLokationEnter">
+                        </TextBox>
+                    </Border>
+
+
+                    <Button Name="addLokationButton" Content="Tilføj" Style="{DynamicResource eventBtn}" Margin="30,30,30,30" Click="addLokationButton_Click"/>
+
+
+                    <Button
+                        Style="{DynamicResource eventBtn}"
+                        Click="Annuller_Click"
+                        Content="Annuller"
+                    />
+
+                </StackPanel>
+
+
+                <StackPanel
+                    x:Name="redigerLokationStack"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Orientation="Vertical"
+                    Margin="80,60"
+                    Visibility="Collapsed"
+                    >
+                    <Label
+                        x:Name="lokationRedigerLabel"
+                        Content="Lokation"
+                        Foreground="White"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        FontWeight="Bold"
+                    />
+                    <TextBox
+                        x:Name="lokationRedigerBox"
+                        BorderThickness="0"
+                        Height="30"
+                        Margin="0,15"
+                        Padding="10,6"
+                        KeyDown="redigerLokationEnter">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                    <Button x:Name="redigerLokation" Content="Rediger Lokation" Style="{DynamicResource eventBtn}" Margin="0,15" Click="RedigereLokationButton_Click"/>
+                    <Button x:Name="redigerAnnuller" Content="Annuller" Style="{DynamicResource eventBtn}" Click="Annuller_Click"/>
+
+                </StackPanel>
+
+                <ScrollViewer x:Name="lokationScroll" Grid.Row="1" Grid.Column="0" Margin="48,50,41,50" Visibility="Collapsed" VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="lokationPanel" Visibility="Collapsed"/>
+                </ScrollViewer>
+
+                <StackPanel
+                    Name="StatusPanel"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Orientation="Vertical"
+                    Margin="80,60"
+                    Visibility="Collapsed"
+                    >
+                    <Label
+                        x:Name="ChangeStatusLabel"
+                        Content="Status"
+                        Foreground="White"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        FontWeight="Bold"
+                    />
+                    <ComboBox
+                        x:Name="ChangeStatusBox"
+                        BorderThickness="0"
+                        Height="30"
+                        Margin="0,15"
+                        Padding="10,6"
+                        KeyDown="changeStatusEnter">
+                        <ComboBox.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </ComboBox.Resources>
+                        <ComboBoxItem>Reparation</ComboBoxItem>
+                        <ComboBoxItem>Bortkommet</ComboBoxItem>
+                        <ComboBoxItem>Ødelagt</ComboBoxItem>
+                    </ComboBox>
+
+                    <Button x:Name="ConfirmStatusChangeButton" Content="Rediger Status" Style="{DynamicResource eventBtn}" Click="ConfirmStatusChangeButton_Click" />
+
+                    <Button Content="Annuller" Style="{DynamicResource eventBtn}" Margin="0,10" Click="Annuller_Click" />
+
+                </StackPanel>
+
+                <StackPanel
+                    Name="KopierEventPanel"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Orientation="Vertical"
+                    Margin="80,60"
+                    Visibility="Collapsed"
+                    >
+                    <Label
+                        x:Name="CopyEventLabel"
+                        Content="Kopier Event"
+                        Foreground="White"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        FontWeight="Bold"
+                        FontSize="24"
+                    />
+                    <Label
+                        Content="Nyt Event Navn"
+                        Foreground="White"
+                        VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        FontWeight="Bold"
+                    />
+                    <Border
+                        Style="{DynamicResource eventBox}"
+                        Width="160"
+                        Margin="0,0,0,10"
+                    >
+                        <TextBox x:Name="NewEventName"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            KeyDown="nextEnter"
+                        />
+                    </Border>
+
+                    <CheckBox x:Name="checkBoxKopir"
+                        BorderThickness="1" Content="Kopier Lokation"
+                        Foreground="White"
+                        Checked="checkBoxKopir_Checked"
+                        Unchecked="checkBoxKopir_Unchecked"
+                        Margin="89,0,93,0"
+                        KeyDown="nextEnterCheckbox"
+                    />
+
+                    <Button x:Name="ShowVareCopy" Content="Vis Varer der kopieres" Style="{DynamicResource eventBtn}" Margin="0,7.5" Click="ShowVareCopy_Click" />
+
+                    <Button x:Name="ConfirmCopyEvent" Content="Bekræft Kopiering" Style="{DynamicResource eventBtn}" Margin="0,7.5" Click="ConfirmCopyEvent_Click" />
+
+                    <Button x:Name="KopierAnnuller" Content="Annuller" Style="{DynamicResource eventBtn}" Margin="0,7.5" Click="Annuller_Click" />
+
+                </StackPanel>
+
+                <ScrollViewer Grid.Row="1" Grid.Column="0" Margin="48,50,41,50" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Name="EventsStackPanelView">
+                    <StackPanel Name="EventsStackPanel"   RenderTransformOrigin="0.489,0.659" Grid.ColumnSpan="2" Grid.Row="2"  Margin="21,25,10,0"/>
+                </ScrollViewer>
+                <Label x:Name="eventAktivLabel" Visibility="Collapsed" Foreground="LightGray" Margin="287,0,87,492" Grid.Row="1">Aktive Events</Label>
+                <CheckBox x:Name="aktivCheck" Margin="381,7,47,486" Grid.Row="1" RenderTransformOrigin="-1.482,0.396" Visibility="Collapsed" Unchecked="aktivCheck_Unchecked" Checked="aktivCheck_Checked"></CheckBox>
+
+                <StackPanel
+                    Name="OmbytVarePanel"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Orientation="Vertical"
+                    Margin="80,60"
+                    Visibility="Collapsed"
+                    >
+
+                    <Label x:Name="eventVareLabel" Foreground="White" Margin="0,1" Content="Vælg en vare først" HorizontalAlignment="Center"/>
+
+                    <ComboBox x:Name="eventComboBox" Width="130" HorizontalAlignment="Center" Margin="0,5" KeyDown="ombytteEnter"></ComboBox>
+
+                    <Button x:Name="ombytteVareButton" Content="Skift lokation" Style="{DynamicResource eventBtn}" Margin="0,0" Click="ombytteVareButton_Click"/>
+
+                    <Button x:Name="ombytteAnnuller" Content="Annuller" Style="{DynamicResource eventBtn}" Click="ombytteAnnuller_Click" Margin="0,5" />
+
+                </StackPanel>
+
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    x:Name="EventGridBorder"
+                    Padding="1"
+                    CornerRadius="25"
+                    BorderThickness="0"
+                    BorderBrush="#FF008D7A"
+                    SnapsToDevicePixels="True"
+                    Background="#FF002657"
+                    Opacity="0.5"
+                    Margin='30' Grid.ColumnSpan="2"
+                >
+
+                    <Border.Effect>
+                        <DropShadowEffect/>
+                    </Border.Effect>
+
+
+                </Border>
+                <Grid Grid.Row="1" Grid.Column="1"  Margin="39,47,30,50" Grid.ColumnSpan="2">
+
+                    <DataGrid x:Name = "EventGrid" AutoGenerateColumns = "False" Background="Transparent" RowBackground="Transparent" Foreground="White" BorderBrush="{x:Null}" Margin="0,0,0,10" IsReadOnly="True">
+
+
+                        <DataGrid.Columns>
+
+                            <!--<DataGridTextColumn Width="*" Binding="{Binding EventId}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Event Id" TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>-->
+
+                            <DataGridTextColumn Width="*" Binding="{Binding EventName}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Event Navn" TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+
+                            <DataGridTextColumn Width="*" Binding="{Binding StartDato}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Start Dato" TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+
+                            <DataGridTextColumn Width="*" Binding="{Binding SlutDato}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="SlutDato" TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="*" Binding="{Binding Note}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Note" TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+
+                            <DataGridTextColumn Width="*" Binding="{Binding DieselstanderStart}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Diesel Stander Start" TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="*"  Binding="{Binding DielselstanderSlut}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Dielsel Stander Slut" TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+
+                            <DataGridTextColumn Width="*" Binding="{Binding DefektePærer}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Defekte Pærer" TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="*" Binding="{Binding TlfNummer}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Tlf Nummer" TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="*" Binding="{Binding Aktiv}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Aktiv" TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="*" Binding="{Binding BrugerId}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="brugerId" TextWrapping="Wrap"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+
+                        </DataGrid.Columns>
+
+                        <DataGrid.Resources>
+                            <Style TargetType="{x:Type DataGridRow}">
+                                <EventSetter Event="MouseDoubleClick" Handler="EventGrid_MouseDoubleClick"></EventSetter>
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="Foreground" Value="LightGray"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                    </DataGrid>
+                </Grid>
+
+
+
+
+                <Border
+                    x:Name="EventsBorder"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Padding="1"
+                    CornerRadius="25"
+                    BorderThickness="0"
+                    BorderBrush="#FF008D7A"
+                    SnapsToDevicePixels="True"
+                    Background="#FF008D7A"
+                    Margin="30"
+                    Visibility ="Hidden"
+                >
+
+
+                    <Border.Effect>
+                        <DropShadowEffect/>
+                    </Border.Effect>
+
+                </Border>
+
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="1"
+
+                    Padding="1"
+                    CornerRadius="25"
+                    BorderThickness="0"
+                    BorderBrush="#FF008D7A"
+                    SnapsToDevicePixels="True"
+                    Background="#FF002657"
+                    Opacity="0.5"
+                    Margin='0,30,30,30'
+                    x:Name="EventVareBorder"
+                    Visibility="Collapsed" Grid.ColumnSpan="2"
+                    >
+
+
+                    <Border.Effect>
+                        <DropShadowEffect/>
+                    </Border.Effect>
+                </Border>
+
+                <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" >
+
+                    <DataGrid x:Name = "EventVareGrid" AutoGenerateColumns = "False" Background="Transparent" RowBackground="Transparent" Foreground="White" BorderBrush="{x:Null}" Margin="10,54,30,44" IsReadOnly="True" Visibility="Collapsed" >
+
+
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Width="55" Header="Vare Nr." Binding="{Binding VareNr}">
+
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="76" Header="Beskrivelse" Binding="{Binding Beskrivelse}">
+
+                            </DataGridTextColumn>
+
+
+                            <DataGridTextColumn Width="78" Header="Stik Tilgang" Binding="{Binding Tilgang}">
+
+                            </DataGridTextColumn>
+
+
+                            <DataGridTextColumn Width="78" Header="Stik Afgang" Binding="{Binding Afgang}">
+
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="*" Header="Antal" Binding="{Binding Antal}">
+
+                            </DataGridTextColumn>
+
+
+                            <DataGridTextColumn Width="*" Header="Status" Binding="{Binding Status}">
+
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="60" Header="Lokation" Binding="{Binding VareLokation}">
+
+                            </DataGridTextColumn>
+
+
+                            <DataGridTextColumn Width="55" Header="Ampere" Binding="{Binding Ampere}">
+
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="*" Header="Pin Nr." Binding="{Binding PinNr}">
+
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="53" Header="Længde" Binding="{Binding Længde}">
+
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="83" Header="Webshop Nr." Binding="{Binding WebshopVareNummer}">
+
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="58" Header="RFID Nr." Binding="{Binding RFIDNummer}">
+
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="*" Header="Note" Binding="{Binding Note}">
+
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="*" Header="QR" Binding="{Binding QR}">
+
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="*" Header="Pris" Binding="{Binding Salgspris}">
+
+                            </DataGridTextColumn>
+
+
+
+                        </DataGrid.Columns>
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="Foreground" Value="LightGray"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                    </DataGrid>
+                </Grid>
+
+                <Label Name="VareNrLabel" Visibility="Collapsed" Foreground="LightGray" Margin="34,163,361,59">Vare Nr.</Label>
+                <TextBox Name="VareNrBox" TextChanged="txtSearchBox_TextChanged" Width="120" Visibility="Collapsed" KeyDown="VareNrEnter" Margin="10,192,326,28"/>
+
+                <Label Name="beskrivelseLabel" Visibility="Collapsed" Foreground="LightGray" Margin="150,163,245,59">Beskrivelse</Label>
+                <TextBox Name="beskrivelseBox" TextChanged="txtSearchBox_TextChanged" Width="120" Visibility="Collapsed" KeyDown="beskrivelseEnter" Margin="134,192,202,28"/>
+
+                <Label Name="TilgangLabel" Visibility="Collapsed" Foreground="LightGray" Margin="282,163,113,59">Tilgang</Label>
+                <TextBox Name="TilgangBox" TextChanged="txtSearchBox_TextChanged" Width="120" Visibility="Collapsed" KeyDown="TilgangEnter" Margin="259,191,77,28"/>
+
+                <Label Name="AfgangLabel" Visibility="Collapsed" Foreground="LightGray" Margin="404,161,236,61" Grid.ColumnSpan="2">Afgang</Label>
+                <TextBox Name="AfgangBox" TextChanged="txtSearchBox_TextChanged" Width="120" Visibility="Collapsed" KeyDown="AfgangEnter" Margin="382,190,199,28" Grid.ColumnSpan="2"/>
+
+                <Label Name="AntalLabel" Visibility="Collapsed" Foreground="LightGray" Margin="75,163,109,59" Grid.Column="1">Antal</Label>
+                <TextBox Name="AntalBox" TextChanged="txtSearchBox_TextChanged" Visibility="Collapsed" Width="120" KeyDown="AntalEnter" Margin="49,191,76,28" Grid.Column="1"/>
+
+                <Label Name="LokationLabel" Visibility="Collapsed" Foreground="LightGray" Margin="193,163,657,59" Grid.Column="1" Grid.ColumnSpan="2">Lokation</Label>
+                <TextBox Name="LokationBox" TextChanged="txtSearchBox_TextChanged" Visibility="Collapsed" Width="120" KeyDown="LokationEnter" Margin="172,191,619,28" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+                <Label Name="AmpereLabel" Visibility="Collapsed" Foreground="LightGray" Margin="63,163,541,59" Grid.Column="2">Ampere</Label>
+                <TextBox Name="AmpereBox" TextChanged="txtSearchBox_TextChanged" Visibility="Collapsed" Width="120" KeyDown="AmpereEnter" Margin="49,191,497,28" Grid.Column="2"/>
+
+                <Label Name="PinLabel" Visibility="Collapsed" Foreground="LightGray" Margin="197,163,408,59" Grid.Column="2">Pin Nr.</Label>
+                <TextBox Name="PinBox" TextChanged="txtSearchBox_TextChanged" Visibility="Collapsed" Width="110" KeyDown="PinEnter" Margin="172,191,384,28" Grid.Column="2"/>
+
+                <Label Name="LængdeLabel" Visibility="Collapsed" Foreground="LightGray" Margin="309,163,296,59" Grid.Column="2">Længde</Label>
+                <TextBox Name="LængdeBox" TextChanged="txtSearchBox_TextChanged" Visibility="Collapsed" Width="120" KeyDown="LængdeEnter" Margin="286,191,260,28" Grid.Column="2"/>
+
+                <Label Name="webLabel" Visibility="Collapsed" Foreground="LightGray" Margin="445,163,159,59" Grid.Column="2">Webshop Nr.</Label>
+                <TextBox Name="webBox" TextChanged="txtSearchBox_TextChanged" Visibility="Collapsed" Width="120" KeyDown="WebEnter" Margin="412,191,134,28" Grid.Column="2"/>
+
+                <Label Name="NoteLabel" Visibility="Collapsed" Foreground="LightGray" Margin="63,219,541,3" Grid.Column="2">Note</Label>
+                <TextBox Name="NoteVareBox" TextChanged="txtSearchBox_TextChanged" Width="120" Visibility="Collapsed" KeyDown="NoteEnter" Margin="49,243,497,494" Grid.Column="2" Grid.RowSpan="2"/>
+
+                <Label Name="statusLabel" Visibility="Collapsed" Grid.Column="1" Foreground="LightGray" FontWeight="Bold" Margin="196,219,0,4">Status</Label>
+                <ComboBox Name="status" Visibility="Collapsed" Grid.Column="1" Width="120" SelectionChanged="status_SelectionChanged" Margin="172,243,619,494" RenderTransformOrigin="0.518,0.72" Grid.RowSpan="2" Grid.ColumnSpan="2" >
+                    <ComboBoxItem Content=" "></ComboBoxItem>
+                    <ComboBoxItem Content="Udlånt"></ComboBoxItem>
+                    <ComboBoxItem Content="Reparation"></ComboBoxItem>
+                    <ComboBoxItem Content="Bortkommet"></ComboBoxItem>
+                </ComboBox>
+
+
+                <Label Name="AktivLabel" Visibility="Visible" Grid.Column="2" Foreground="LightGray" FontWeight="Bold" Margin="557,178,54,45" RenderTransformOrigin="1.124,0.676">Aktiv</Label>
+                <CheckBox Name="AktivCB" Grid.Column="2" Visibility="Visible" Unchecked="EventHandleUnchecked" Checked="EventHandleChecked" IsChecked="False" Margin="572,220,69,3" />
+
+                <Label Name="brugerIdLabel" Visibility="Visible" Grid.Column="2" Foreground="LightGray" FontWeight="Bold" Margin="603,177,-2,46" RenderTransformOrigin="1.124,0.676">Bruger Id</Label>
+                <CheckBox Name="brugerCB" Grid.Column="2" Visibility="Visible" Unchecked="EventHandleUnchecked" Checked="EventHandleChecked" IsChecked="False" Margin="622,220,18,3" RenderTransformOrigin="3.423,2.627" />
+
+
+
+
+
+
+
+                <Label x:Name="SearchEventNameEventLabel" Visibility="Collapsed" Foreground="LightGray" Margin="3,0,340,490" Grid.Row="1">Søg Efter Event:</Label>
+                <TextBox x:Name="SearchEventNameEvent" Visibility="Collapsed" Margin="101,5,192,495" TextChanged="SearchEventNameEvent_TextChanged" Grid.Row="1"></TextBox>
+                <TextBox x:Name="EventNameBox" Margin="3,215,323,10" Width="130" Visibility="Visible" KeyDown="NameEnter" TextChanged="EventTxtSearchBox_TextChanged" Grid.Row="0"/>
+
+                <Label Name="searchStart" Foreground="LightGray" Margin="197,178,197,37" Visibility="Visible">Start Dato</Label>
+                <TextBox x:Name="StartBox" Margin="161,215,165,10" Width="130" Visibility="Visible" KeyDown="StartEnter" TextChanged="EventTxtSearchBox_TextChanged" Grid.Row="0"/>
+
+                <Label Name="searchSlut" Foreground="LightGray" Margin="357,178,40,37" Visibility="Visible">Slut Dato</Label>
+                <TextBox x:Name="SlutBox" Margin="321,215,5,10"  Width="130" Visibility="Visible" KeyDown="SlutEnter" TextChanged="EventTxtSearchBox_TextChanged" Grid.Row="0"/>
+
+                <Label Name="searchNote" Foreground="LightGray" Margin="63,178,132,46" Grid.Column="1" Visibility="Visible">Note</Label>
+                <TextBox x:Name="NoteSeachBox" Margin="24,215,91,10" Width="130" Visibility="Visible" KeyDown="eventNoteEnter" TextChanged="EventTxtSearchBox_TextChanged" Grid.Column="1" Grid.Row="0"/>
+
+                <Label Name="searchDsStart" Foreground="LightGray" Margin="193,178,604,37" Grid.Column="1" Visibility="Visible" Grid.ColumnSpan="2">Diesel Stander Start</Label>
+                <TextBox x:Name="DsStartBox" Margin="183,215,598,10" Width="130" Visibility="Visible" KeyDown="DsStartEnter" TextChanged="EventTxtSearchBox_TextChanged" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"/>
+
+                <Label Name="searchDsSlut" Foreground="LightGray" Margin="108,178,423,43" Grid.Column="2" Visibility="Visible">Diesel Stander Start</Label>
+                <TextBox x:Name="DsSlutBox" Margin="99,215,437,10" Width="130" Visibility="Visible" KeyDown="DsSlutEnter" TextChanged="EventTxtSearchBox_TextChanged" Grid.Column="2" Grid.Row="0"/>
+
+                <Label Name="searchDP" Foreground="LightGray" Margin="282,178,291,43" Grid.Column="2" Visibility="Visible">Defekte Pærer</Label>
+                <TextBox x:Name="DPBox" Margin="263,215,273,10" Width="130" Visibility="Visible" KeyDown="DPEnter" TextChanged="EventTxtSearchBox_TextChanged" Grid.Column="2" Grid.Row="0"/>
+
+                <Label Name="searchTlf" Foreground="LightGray" Margin="442,178,129,43" Grid.Column="2" Visibility="Visible">Telefonnummer</Label>
+                <TextBox x:Name="TlfBox" Margin="419,215,117,10" Width="130" Visibility="Visible" KeyDown="TlfEnter" TextChanged="EventTxtSearchBox_TextChanged" Grid.Column="2" Grid.Row="0"/>
+                <Button x:Name="Events2" Content="Event" Style="{DynamicResource eventBtn}" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Click="Start_Events" Visibility="Collapsed" Margin="0,50,15,0" Grid.Column="2"/>
+                <Label x:Name="selectedEventLabel" Visibility="Collapsed" Content="Event: " HorizontalAlignment="Left" Margin="452,66,0,0" VerticalAlignment="Top" Foreground="LightGray" FontWeight="Bold" FontSize="36" Grid.ColumnSpan="3" Width="834"/>
+                <Label x:Name="searchName" Foreground="LightGray" Margin="31,178,347,38" Visibility="Visible" Content="Event name"/>
+
+
+
+            </Grid>
+
+
+        </Grid>
+    </Viewbox>
+
+</Page>

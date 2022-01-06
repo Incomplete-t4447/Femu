@@ -1,0 +1,730 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:fa="http://schemas.fontawesome.io/icons/"
+    xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
+    x:Class="FELM.Vare"
+      mc:Ignorable="d"
+      d:DesignHeight="768" d:DesignWidth="1366"
+      Loaded="Onload"
+      Title="Vare">
+
+
+
+
+    <Viewbox Stretch="Fill">
+        <Grid Height="768" Width="1366">
+            <Grid.Background>
+                <ImageBrush ImageSource="Pic/festival_1.png" />
+            </Grid.Background>
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="267*" />
+                    <ColumnDefinition Width="533*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="31*" />
+                    <RowDefinition Height="59*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Column="0" Margin="10,0,55,59">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="logo_festival-el.png" />
+                    </Grid.Background>
+                    <Label
+                        Content="Varepage"
+                        FontWeight="Bold"
+                        FontSize="30"
+                        Foreground="SteelBlue"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        Margin="71,0,0,-0.2"
+                        >
+                    </Label>
+                    <Button Visibility="Collapsed" x:Name="goBack" Content="Tilbage" Style="{DynamicResource NewScanBtn}" Height="Auto" Width="120" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" Click="goBack_Click" Margin="0,0,0,7.8"/>
+                    <fa:ImageAwesome x:Name="TilbageKnapEvent" Icon="ChevronCircleLeft" Height="48" Width="48" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="1282,0,-939,111" Foreground="White" MouseDown="TilbageKnapEvent_MouseDown" MouseEnter="TilbageKnapEvent_MouseEnter" MouseLeave="TilbageKnapEvent_MouseLeave" />
+
+                </Grid>
+
+                <Grid Grid.Row="0"
+              Grid.Column="0" />
+                <Grid Grid.Row="1"
+              Grid.Column="0" />
+                <Grid Grid.Row="2"
+              Grid.Column="0" />
+                <Grid Grid.Row="0"
+              Grid.Column="1" />
+                <Grid Grid.Row="1"
+              Grid.Column="1" />
+                <Grid Grid.Row="2"
+              Grid.Column="1" />
+                <Grid Grid.Row="0"
+              Grid.Column="2" />
+                <Grid Grid.Row="0"
+              Grid.Column="3" />
+                <Grid Grid.Row="1"
+              Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="43*" />
+                        <RowDefinition Height="47*" />
+                    </Grid.RowDefinitions>
+                </Grid>
+                <Grid Grid.Row="2"
+              Grid.Column="2" />
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  Width="181" Height="142" Margin="271,77,458,46" Grid.Column="1">
+
+                    <Button Content="Kopier Vare"  Style="{DynamicResource ButtonBorderStyle}" Click="Kopier_Button" />
+                    <Button Content="Print Alle"  Style="{DynamicResource ButtonBorderStyle}" Click="Print_Button" />
+
+                    <Button Content="Vis event historik" x:Name="visEventHistorik" Style="{DynamicResource ButtonBorderStyle}" Click="ShowEventList" />
+
+                    <Button Content="Vis ekstra tilbehør" x:Name="visEkstraTilbehør" Style="{DynamicResource ButtonBorderStyle}" Click="ShowEkstraTilbehør" />
+                </StackPanel>
+                <DockPanel Grid.Row="0" Margin="49,241,-9,489" Grid.RowSpan="2" x:Name="SearchBarLabels" Grid.ColumnSpan="2">
+                    <Label x:Name="SearchVareNr" Visibility="Visible" FontSize="14" Foreground="LightGray" Margin="5, 0, 15, 0" Content="Vare Nr." />
+                    <Label x:Name="SearchBeskrivelse" Visibility="Visible" FontSize="14" Foreground="LightGray" Margin="5, 0, 15, 0" Content="beskrivelse" />
+                    <Label x:Name="SearchAntal" Visibility="Visible" FontSize="14" Foreground="LightGray" Margin="10, 0, 15, 0" Content="Antal" />
+                    <Label x:Name="SearchStatus" Visibility="Visible" FontSize="14" Grid.Column="1" Foreground="LightGray" FontWeight="Bold" Margin="20, 0, 15, 0" Content="Status" />
+                    <Label x:Name="SearchLokation" Visibility="Visible" FontSize="14" Foreground="LightGray" Margin="15, 0, 10, 0" Content="Container" />
+                    <Label x:Name="SearchAmpere" Visibility="Visible" FontSize="14" Foreground="LightGray" Margin="15, 0, 15, 0" Content="Ampere" />
+                    <Label x:Name="SearchTilgang" Visibility="Visible" FontSize="14" Foreground="LightGray" Margin="5, 0, 15, 0" Content="Tilgang" />
+                    <Label x:Name="SearchAfgang" Visibility="Visible" FontSize="14" Foreground="LightGray" Margin="15, 0, 15, 0" Content="Afgang" />
+                    <Label x:Name="SearchPinNr" Visibility="Visible" FontSize="14" Foreground="LightGray" Margin="20, 0, 15, 0" Content="Pin Nr." />
+                    <Label x:Name="SearchLængde" Visibility="Visible" FontSize="14" Foreground="LightGray" Margin="15, 0, 15, 0" Content="Længde" />
+                    <Label x:Name="SearchWebshopVareNr" Visibility="Visible" Foreground="LightGray" Margin="15, 0, 15, 0" Content="Web Nr." />
+                    <Label x:Name="SearchRFID" Visibility="Visible" FontSize="14" Foreground="LightGray" Margin="15, 0, 15, 0" Content="RFID Nr." />
+                    <Label x:Name="SearchNote" Visibility="Visible" FontSize="14" Foreground="LightGray" Margin="15, 0, 15, 0" Content="Note" Width="68"/>
+                    <Label x:Name="SearchQR" Foreground="LightGray" FontSize="14" Visibility="Visible" Margin="5, 0, 5, 0" Content="QR" />
+                    <Label x:Name="SearchSalg" Foreground="LightGray" FontSize="14" Visibility="Visible" Margin="35,0,5,0" Content="Salgs pris" />
+                </DockPanel>
+                <DockPanel Grid.Row="1" Margin="49,10.2,45.4,473" x:Name="SearchBars" Grid.ColumnSpan="2">
+                    <TextBox x:Name="VareNrBox" TextChanged="txtSearchBox_TextChanged" Visibility="Visible" KeyDown="VareNrEnter" Width="80" Margin="0,0,5,0" />
+                    <TextBox x:Name="beskrivelseBox" TextChanged="txtSearchBox_TextChanged" Visibility="Visible" KeyDown="beskrivelseEnter" Width="80" Margin="0,0,5,0" />
+                    <TextBox x:Name="AntalBox" TextChanged="txtSearchBox_TextChanged" Visibility="Visible" KeyDown="AntalEnter" Width="80" Margin="0,0,5,0" />
+                    <ComboBox x:Name="status" Visibility="Visible" Grid.Column="1" SelectionChanged="status_SelectionChanged" Width="80" Margin="0,0,5,0">
+                        <ComboBoxItem Content=" " />
+                        <ComboBoxItem Content="Hjemme" />
+                        <ComboBoxItem Content="Udlånt" />
+                        <ComboBoxItem Content="Reparation" />
+                        <ComboBoxItem Content="Bortkommet" />
+                    </ComboBox>
+                    <TextBox x:Name="LokationBox" TextChanged="txtSearchBox_TextChanged" Visibility="Visible" KeyDown="LokationEnter" Width="80" Margin="0,0,5,0"/>
+                    <TextBox x:Name="AmpereBox" TextChanged="txtSearchBox_TextChanged" Visibility="Visible" KeyDown="AmpereEnter" Width="80" Margin="0,0,5,0"/>
+                    <TextBox x:Name="TilgangBox" TextChanged="txtSearchBox_TextChanged" Visibility="Visible" KeyDown="TilgangEnter" Width="80" Margin="0,0,5,0"/>
+                    <TextBox x:Name="AfgangBox" TextChanged="txtSearchBox_TextChanged" Visibility="Visible" KeyDown="AfgangEnter" Width="80" Margin="0,0,5,0"/>
+                    <TextBox x:Name="PinBox" TextChanged="txtSearchBox_TextChanged" Visibility="Visible" KeyDown="PinEnter" Width="80" Margin="0,0,5,0"/>
+                    <TextBox x:Name="LængdeBox" TextChanged="txtSearchBox_TextChanged" Visibility="Visible" KeyDown="LængdeEnter" Width="80" Margin="0,0,5,0"/>
+                    <TextBox x:Name="webBox" TextChanged="txtSearchBox_TextChanged" Visibility="Visible" KeyDown="WebEnter" Width="80" Margin="0,0,5,0"/>
+                    <TextBox x:Name="RFIDBox" TextChanged="txtSearchBox_TextChanged" Visibility="Visible" KeyDown="RFIDEnter" Width="80" Margin="0,0,5,0"/>
+                    <TextBox x:Name="NoteVareBox" TextChanged="txtSearchBox_TextChanged" Visibility="Visible" KeyDown="NoteEnter" Width="80" Margin="0,0,5,0"/>
+                    <TextBox x:Name="QRBox" TextChanged="txtSearchBox_TextChanged" Visibility="Visible" KeyDown="QREnter" Width="80" Margin="0,0,5,0"/>
+                    <TextBox x:Name="SalgsBox" TextChanged="txtSearchBox_TextChanged" Visibility="Visible" KeyDown="SalgsEnter" Width="80" Margin="0,0,5,0"/>
+                </DockPanel>
+
+                <Label Grid.Row="0" Grid.Column="1" x:Name="labelSearch" Margin="36,239,813,502" Foreground="LightGray" Grid.RowSpan="2" Visibility="Collapsed" Content="Søgebar" />
+                <TextBox x:Name="txtEventSearchBox" Visibility="Collapsed" Grid.Row="0" VerticalAlignment="Top" TextChanged="txtEventSearch" Background="White" BorderThickness="0" Height="25" RenderTransformOrigin="0.5,1.25" Margin="100,241,483,0" Grid.Column="1" Grid.RowSpan="2" />
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  Width="180" Height="94" Margin="483,77,247,94" Grid.Column="1">
+                    <Button x:Name="nyKontainer" Style="{DynamicResource ButtonBorderStyle}" Click="nyKontainer_Click">Ret/Lav en kontainer</Button>
+                </StackPanel>
+                <ScrollViewer x:Name="printInfo" Visibility="Collapsed" Grid.Row="1" Grid.Column="0" VerticalScrollBarVisibility="Auto">
+                    <StackPanel  Orientation="Vertical" Width="Auto" >
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                <CheckBox x:Name="cVareNr" Width="16" Margin="25,7,0,0">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                                <Label Style="{StaticResource LabelTextBoxStyle}" FontSize="18" Margin="17,0,9,0" Content="Vare Nr."/>
+
+                            </StackPanel>
+
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="40,0,0,0">
+                                <CheckBox x:Name="cBeskrivelse" Width="16" Margin="15,7,0,0">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                                <Label Style="{StaticResource LabelTextBoxStyle}" Margin="14,0,0,0" FontSize="18" Content="Beskrivelse" />
+
+                            </StackPanel>
+
+
+
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                            <StackPanel Margin="7,0,0,0" HorizontalAlignment="Center" Orientation="Horizontal" Width="Auto">
+                                <CheckBox x:Name="cAntal" Width="16" Margin="18,5,3,0">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                                <Label Style="{StaticResource LabelTextBoxStyle}" FontSize="18" Content="Antal" />
+
+                            </StackPanel>
+
+                            <StackPanel  Orientation="Horizontal" Margin="55,0,0,0">
+                                <CheckBox x:Name="cStatus" Width="16" Margin="14,7,0,0">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                                <Label Style="{StaticResource LabelTextBoxStyle}" FontSize="18" Content="Status" />
+
+                            </StackPanel>
+
+
+
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                            <StackPanel Margin="0,0,0,0" HorizontalAlignment="Center" Orientation="Horizontal" Width="Auto">
+                                <CheckBox x:Name="cLokation" Width="16" Margin="25,6,0,0">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                                <Label Style="{StaticResource LabelTextBoxStyle}" FontSize="18" Content="Lokation" Margin="18,0,3,0"/>
+
+                            </StackPanel>
+
+                            <StackPanel  HorizontalAlignment="Center" Orientation="Horizontal" Margin="35,0,0,0">
+                                <CheckBox x:Name="cAmper" Width="16" Margin="18,6,0,0">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                                <Label Style="{StaticResource LabelTextBoxStyle}" Margin="15,0,0,0" FontSize="18" Content="Amper" />
+
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Width="Auto">
+                                <CheckBox x:Name="cTilgang" Width="16" Margin="25,8,0,0">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                                <Label Style="{StaticResource LabelTextBoxStyle}" Margin="19,0,0,0" FontSize="18" Content="Tilgang" />
+
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="45,0,0,0">
+                                <CheckBox x:Name="cAfgang" Width="16" Margin="20,10,0,0">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                                <Label Style="{StaticResource LabelTextBoxStyle}" Margin="15,0,0,0" FontSize="18" Content="Afgang" />
+
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Width="Auto">
+                                <CheckBox x:Name="cPin" Width="16" Margin="25,6,0,0">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                                <Label Style="{StaticResource LabelTextBoxStyle}" Margin="19,0,0,0" FontSize="18" Content="Pin Nr." />
+
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="50,0,0,0">
+                                <CheckBox x:Name="cLængde" Width="16" Margin="22,7,0,0">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                                <Label Style="{StaticResource LabelTextBoxStyle}" Margin="15,0,0,0" FontSize="18" Content="Længde" />
+
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Width="Auto">
+                                <CheckBox x:Name="cWebNr" Width="16" Margin="25,6,0,0">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                                <Label Style="{StaticResource LabelTextBoxStyle}" Margin="18,0,0,0" FontSize="18" Content="Web Nr." />
+
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="40,0,0,0">
+                                <CheckBox x:Name="cRFID" Width="16" Margin="22,6,0,0">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                                <Label Style="{StaticResource LabelTextBoxStyle}" Margin="15,0,0,0" FontSize="18" Content="RFID Nr." />
+
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Width="Auto">
+                                <CheckBox x:Name="cNote" Width="16" Margin="25,5,0,0">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                                <Label Style="{StaticResource LabelTextBoxStyle}" Margin="17,0,0,0" FontSize="18" Content="Note" />
+
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="70,0,0,0">
+                                <CheckBox x:Name="cQR" Width="16" Margin="18,5,0,0">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                                <Label Style="{StaticResource LabelTextBoxStyle}" Margin="15,0,0,0" FontSize="18" Content="QR" />
+
+                            </StackPanel>
+                        </StackPanel>
+
+
+
+
+
+                        <Button x:Name="PrintButton" Style="{DynamicResource eventBtn}" Click="Accept_print" Content="Print" Margin="0,20,0,0"/>
+                        <Button x:Name="allSelect" Style="{DynamicResource eventBtn}" Margin="10" Click="allSelect_button" Content="Vælg alle" />
+                        <Button Style="{DynamicResource eventBtn}" Click="annuller_print" Content="Annuller" />
+                    </StackPanel>
+                </ScrollViewer>
+
+                <ScrollViewer x:Name="scrollVare" Grid.Row="1" Grid.Column="0" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Margin="0,-5,0,5">
+                    <StackPanel Orientation="Vertical" x:Name="VareListe">
+                        <Label
+                            x:Name="VareNrLabel"
+                            Content="Vare Nummer:"
+                            Style="{StaticResource LabelTextBoxStyle}" />
+                        <Border
+                            x:Name="borderVareNr"
+                            Style="{DynamicResource TextBoxBorderStyle}">
+
+                            <TextBox x:Name="VareNr"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                PreviewTextInput="NumberValidation" />
+                        </Border>
+
+                        <Label
+                            x:Name="BeskrivelseLabel"
+                            Content="Beskrivelse:"
+                            Style="{StaticResource LabelTextBoxStyle}" />
+                        <Border
+                            x:Name="borderBeskrivelse"
+                            Style="{StaticResource TextBoxBorderStyle}">
+
+                            <TextBox x:Name="Beskrivelse"
+                                Background="Transparent"
+                                BorderThickness="0" />
+                        </Border>
+
+                        <Label
+                            x:Name="StikTypeTilgangLabel"
+                            Content="Stik Type Tilgang:"
+                            Style="{StaticResource LabelTextBoxStyle}" />
+                        <Border
+                            x:Name="borderStikTypeTilgang"
+                            Style="{StaticResource TextBoxBorderStyle}">
+                            <TextBox x:Name="StikTypeTilgang"
+                                 Background="Transparent"
+                                 BorderThickness="0" />
+                        </Border>
+
+                        <Label
+                            x:Name="StikTypeAfgangLabel"
+                            Content="Stik Type Afgang:"
+                            Style="{StaticResource LabelTextBoxStyle}" />
+                        <Border
+                            x:Name="borderStikTypeAfgang"
+                            Style="{StaticResource TextBoxBorderStyle}">
+
+                            <TextBox x:Name="StikTypeAfgang"
+                                 Background="Transparent"
+                                 BorderThickness="0" />
+                        </Border>
+
+                        <Label
+                            x:Name="AmpereLabel"
+                            Content="Ampere:"
+                            Style="{StaticResource LabelTextBoxStyle}" />
+                        <Border
+                            x:Name="borderAmpere"
+                            Style="{StaticResource TextBoxBorderStyle}">
+                            <TextBox x:Name="Ampere"
+                                 Background="Transparent"
+                                 BorderThickness="0" />
+                        </Border>
+
+                        <Label
+                            x:Name="NoteLabel"
+                            Content="Note:"
+                            Style="{StaticResource LabelTextBoxStyle}" />
+                        <Border
+                            x:Name="borderNote"
+                            Style="{StaticResource TextBoxBorderStyle}">
+                            <TextBox x:Name="Note"
+                                Background="Transparent"
+                                BorderThickness="0" />
+                        </Border>
+
+                        <Label
+                            x:Name="StatusLabel"
+                            Content="Status:"
+                            Style="{StaticResource LabelTextBoxStyle}" />
+
+                        <ComboBox HorizontalAlignment="Center"
+                            x:Name="StatusComboBox" Width="172" Height="25">
+                            <ComboBoxItem IsSelected="True" Content="Hjemme" />
+                            <ComboBoxItem Content="Udlånt" />
+                            <ComboBoxItem Content="Reparation" />
+                            <ComboBoxItem Content="Bortkommet" />
+                            <ComboBoxItem Content="Ødelagt" />
+                        </ComboBox>
+
+                        <Label
+                            x:Name="AntalLabel"
+                            Content="Antal:"
+                            Style="{StaticResource LabelTextBoxStyle}" />
+                        <Border
+                            x:Name="borderAntal"
+                             Style="{StaticResource TextBoxBorderStyle}">
+
+                            <TextBox x:Name="Antal"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                PreviewTextInput="NumberValidation" />
+                        </Border>
+
+                        <Label
+                            x:Name="VareLokationLabel"
+                            Content="Varelokation:"
+                            Style="{StaticResource LabelTextBoxStyle}" />
+
+                        <ComboBox HorizontalAlignment="Center" x:Name="VareLokation" Width="172" Height="25" SelectionChanged="Lokation_SelectionChanged">
+                            <ComboBoxItem Content="A" />
+                            <ComboBoxItem Content="C" />
+                            <ComboBoxItem Content="D" />
+                            <ComboBoxItem Content="S" />
+                        </ComboBox>
+
+                        <Label
+                            x:Name="PinNrLabel"
+                            Content="Pin Nummer:"
+                            Style="{StaticResource LabelTextBoxStyle}" />
+                        <Border
+                            x:Name="borderPinNummer"
+                            Style="{StaticResource TextBoxBorderStyle}">
+
+                            <TextBox x:Name="PinNummer"
+                                Background="Transparent"
+                                BorderThickness="0" Margin="6,0,-6,0" />
+                        </Border>
+
+                        <Label
+                            x:Name="WebshopVareNrLabel"
+                            Content="Webshop Varenummer:"
+                            Style="{StaticResource LabelTextBoxStyle}" />
+                        <Border
+                            x:Name="borderWebshopVarenummer"
+                            Style="{StaticResource TextBoxBorderStyle}">
+                            <TextBox x:Name="WebshopVarenummer"
+                                Background="Transparent"
+                                BorderThickness="0" Margin="6,0,-6,0" />
+                        </Border>
+
+                        <Label
+                            x:Name="LængdeLabel"
+                            Content="Længde:"
+                            Style="{StaticResource LabelTextBoxStyle}" />
+                        <Border
+                            x:Name="borderLængde"
+                             Style="{StaticResource TextBoxBorderStyle}">
+                            <TextBox x:Name="Længde"
+                                Background="Transparent"
+                                BorderThickness="0" Margin="6,0,-6,0"
+                                PreviewTextInput="NumberValidation" />
+                        </Border>
+
+                        <Label
+                            x:Name="RFIDLabel"
+                            Content="RFID Nummer:"
+                            Style="{StaticResource LabelTextBoxStyle}" />
+                        <Border
+                            x:Name="borderRFIDNummer"
+                             Style="{StaticResource TextBoxBorderStyle}">
+                            <TextBox x:Name="RFIDNummer"
+                                Background="Transparent"
+                                BorderThickness="0" Margin="6,0,-6,0" />
+                        </Border>
+
+                        <Label
+                            x:Name="SalgsLabel"
+                            Content="Salgs pris:"
+                            Style="{StaticResource LabelTextBoxStyle}" />
+
+                        <Border
+                            x:Name="borderSalgs"
+                             Style="{StaticResource TextBoxBorderStyle}">
+                            <TextBox x:Name="Salgs"
+                                Background="Transparent"
+                                BorderThickness="0" Margin="6,0,-6,0" />
+                        </Border>
+                        <Button Content="Rediger Vare" x:Name="RedigerButton" Visibility="Collapsed" Style="{DynamicResource ButtonBorderStyle}"  Margin="0,8,0,0" Click="Rediger_Button" />
+                        <Button Content="Tilføj Vare" x:Name="TilføjVareBtn" Style="{DynamicResource ButtonBorderStyle}" Margin="0,8,0,0" Click="Tilføj_Button" />
+
+                        <Button Style="{DynamicResource ButtonBorderStyle}" Margin="0,8" Content="Annuller" Click="annullerKnap" />
+                    </StackPanel>
+                </ScrollViewer>
+                <ScrollViewer x:Name="scrollEkstra" Grid.Column="0" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Margin="0,37,0,-37" Grid.Row="1">
+                    <StackPanel>
+                        <Label
+                        Content="Beskrivelse"
+                        Style="{DynamicResource LabelTextBoxStyle}" />
+                        <Border Style="{StaticResource TextBoxBorderStyle}">
+                            <TextBox x:Name="ekstraBeskrivelse"
+                                 Background="Transparent"
+                                 BorderThickness="0" Margin="6,0,-6,0" />
+                        </Border>
+
+                        <Label
+                        Content="Antal"
+                        Style="{DynamicResource LabelTextBoxStyle}" />
+                        <Border Style="{StaticResource TextBoxBorderStyle}">
+                            <TextBox x:Name="ekstraAntal"
+                                 Background="Transparent"
+                                 BorderThickness="0" Margin="6,0,-6,0"
+                                 PreviewTextInput="NumberValidation" />
+                        </Border>
+
+                        <Label
+                        Content="webshopNummer"
+                        Style="{DynamicResource LabelTextBoxStyle}" />
+                        <Border Style="{DynamicResource TextBoxBorderStyle}">
+                            <TextBox x:Name="ekstraWebshopNummer"
+                                 Background="Transparent"
+                                 BorderThickness="0" Margin="6,0,-6,0" />
+                        </Border>
+
+                        <Button x:Name="nytEkstra" Style="{DynamicResource ButtonBorderStyle}" Margin="0, 15"  Content="Lav et nyt tilbehør" Click="nytEkstra_Click" />
+                        <Button x:Name="redigerEkstra" Style="{DynamicResource ButtonBorderStyle}" Margin="0, 15" Visibility="Collapsed" Content="rediger tilbehør" Click="redigerEkstra_Click" />
+                        <Button x:Name="annullerEkstra" Style="{DynamicResource ButtonBorderStyle}" Content="Annuller" Click="annullerEkstra_Click" />
+                    </StackPanel>
+                </ScrollViewer>
+
+                <Border
+                    x:Name="dataBorder"
+                    Grid.Row="1"
+                    Style="{StaticResource DatagridBorderStyle}" Grid.ColumnSpan="2" Margin="9,30,30,30"
+                    />
+
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="284*"/>
+                        <RowDefinition Height="83*"/>
+                        <RowDefinition Height="137*"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name = "VareGrid"  AutoGenerateColumns = "False" Background="Transparent" RowBackground="Transparent" Foreground="White" BorderBrush="{x:Null}" Margin="-400, 39, 45, 39" IsReadOnly="True" Grid.RowSpan="3">
+
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Width="*" Header="Vare Nr." Binding="{Binding VareNr}" />
+
+                            <DataGridTextColumn Width="*" Header="Beskrivelse" Binding="{Binding Beskrivelse}" />
+
+                            <DataGridTextColumn Width="*" Header="Antal" Binding="{Binding Antal}" />
+
+                            <DataGridTextColumn Width="*" Header="Status" Binding="{Binding Status}" />
+
+                            <DataGridTextColumn Width="*" Header="Container" Binding="{Binding VareLokation}" />
+
+                            <DataGridTextColumn Width="*" Header="Ampere" Binding="{Binding Ampere}" />
+
+                            <DataGridTextColumn Width="*" Header="Tilgang" Binding="{Binding Tilgang}" />
+
+                            <DataGridTextColumn Width="*" Header="Afgang" Binding="{Binding Afgang}" />
+
+                            <DataGridTextColumn Width="*" Header="Pin Nr." Binding="{Binding PinNr}" />
+
+                            <DataGridTextColumn Width="*" Header="Længde" Binding="{Binding Længde}" />
+
+                            <DataGridTextColumn Width="*" Header="Webshop Nr." Binding="{Binding WebshopVareNummer}" />
+
+                            <DataGridTextColumn Width="*" Header="RFID Nr." Binding="{Binding RFIDNummer}" />
+
+                            <DataGridTextColumn Width="*" Header="Note" Binding="{Binding Note}" />
+
+                            <DataGridTextColumn Width="*" Header="QR" Binding="{Binding QR}" />
+
+                            <DataGridTextColumn Width="*" Header="Salgs pris" Binding="{Binding Salgspris}" />
+                        </DataGrid.Columns>
+                        <DataGrid.Resources>
+                            <Style TargetType="{x:Type DataGridRow}">
+                                <EventSetter Event="MouseDoubleClick" Handler="Rediger_MouseDoubleClick"></EventSetter>
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="Foreground" Value="LightGray" />
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                    </DataGrid>
+                </Grid>
+
+                <Grid Grid.Row="1" Grid.Column="1" Margin="47,39,45,39">
+
+                    <DataGrid x:Name = "EventGrid" AutoGenerateColumns = "False" Background="Transparent" RowBackground="Transparent" Foreground="White" BorderBrush="{x:Null}" Margin="-490, 9, 0, 39" IsReadOnly="True" Visibility="Collapsed">
+
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Width="*" Binding="{Binding EventId}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Event Id" TextWrapping="Wrap" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="*" Binding="{Binding EventName}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Event Navn" TextWrapping="Wrap" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                    </DataGrid>
+                </Grid>
+
+                <!--EkstraTilbehørGrid-->
+
+                <Grid x:Name = "EkstraTilbehørGrid" Visibility="Collapsed" Grid.Row="1" Grid.Column="1" Margin="47,39,45,39">
+
+                    <DataGrid x:Name = "EkstraTilbehørDataGrid" AutoGenerateColumns = "False" Background="Transparent" RowBackground="Transparent" Foreground="White" BorderBrush="{x:Null}" MouseDoubleClick="ekstra_MouseDoubleClick" Margin="0,0,0,10" IsReadOnly="True">
+
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Width="*" Binding="{Binding Beskrivelse}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Beskrivelse" TextWrapping="Wrap" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="*" Binding="{Binding Antal}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Antal" TextWrapping="Wrap" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="*" Binding="{Binding WebshopVareNummer}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Webshop Vare Nr." TextWrapping="Wrap" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                    </DataGrid>
+                </Grid>
+
+                <Border Name="progressStack" Background="#4F000000" Visibility="Collapsed" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                    <Border x:Name="progressStack2" Visibility="Visible" Background="#FF002657" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Margin="426,216,400,227" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                        <StackPanel>
+                            <Label HorizontalAlignment="Center" FontSize="16" Foreground="White" Margin="20" Content="Vent et øjeblik" />
+                            <ProgressBar x:Name="progressBar" Height="30" Foreground="#FF008D7A" Margin="0,20" />
+                            <Label x:Name="workDone" HorizontalAlignment="Center" FontSize="16" Foreground="White" Margin="20" />
+                        </StackPanel>
+                    </Border>
+                </Border>
+                
+                <Border x:Name="nyKontainerStack" Visibility="Collapsed" Background="#4F000000" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                    <Border  Background="#FF002657" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Margin="426,216,400,227" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                        <Grid KeyboardNavigation.TabNavigation="Cycle" KeyboardNavigation.ControlTabNavigation="Cycle" KeyboardNavigation.DirectionalNavigation="Cycle">
+                            <Grid Margin="0,0,365,0">
+                                <Label HorizontalAlignment="Center" FontSize="16" Foreground="White" Margin="10,20,6,275" Content="Gammele Kontainer" Width="152" />
+                                <ScrollViewer  VerticalScrollBarVisibility="Auto" Margin="0,53,-5,0">
+                                    <StackPanel x:Name="kontainerStack" Width="177" ></StackPanel>
+                                </ScrollViewer>
+                            </Grid>
+                            <Grid Margin="178,0,0,0">
+
+                                <Label HorizontalAlignment="Center" FontSize="16" Foreground="White" Margin="129,22,129,267" Content="Ny Kontainer" />
+                                <Label HorizontalAlignment="Center" FontSize="15" Foreground="White" Margin="10,80,10,206" Height="37"  Content="Skriv navnet til den nye kontainer og vare nr. range" Width="340" />
+                                <Label Foreground="White" Margin="10,144,248,151" Content="Kontainer navn"/>
+                                <TextBox  x:Name="kontainerBox" Focusable="True" Width="160" Margin="129,150,71,152"/>
+                                <Label Foreground="White" Margin="10,183,271,113">Vare nr. start</Label>
+                                <TextBox x:Name="vareNrStartBox" Margin="129,188,71,114" ></TextBox>
+                                <Label Foreground="White" Margin="10,221,274,74">Vare nr. slut</Label>
+                                <TextBox x:Name="vareNrSlutBox" Margin="129,225,71,76"></TextBox>
+                                <Button x:Name="nyKontainerBtn" Margin="53,273,187,20" Style="{DynamicResource ButtonBorderStyle}" Width="120" Click="nyKontainerBtn_Click" Content="Lav ny kontainer"/>
+                                <Button x:Name="annullerKontainerBtn" Style="{DynamicResource ButtonBorderStyle}" Width="120" Click="annullerKontainerBtn_Click" Content="Annuller" Margin="216,273,24,20"/>
+
+
+                            </Grid>
+
+                        </Grid>
+                    </Border>
+
+                </Border>
+                    
+                <Border x:Name="scanGrid" Visibility="Collapsed" Background="#FF002657" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Margin="426,216,400,227" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                    <Grid>
+
+                        <Label HorizontalAlignment="Center" FontSize="16" Foreground="White" Margin="205,22,187,267" Content="Scan RFID Nummer" />
+
+                        <Label Foreground="White" Margin="26,127,398,169">RFID Nummer</Label>
+                        <TextBox x:Name="ScanBox" Margin="136,131,111,171"></TextBox>
+                        <Button x:Name="startScanButton" Margin="20,196,398,97" Style="{DynamicResource ButtonBorderStyle}" Width="120" Content="Start scanner" Click="startScanButton_Click"/>
+                        <Button x:Name="gemScanVare" Margin="142,273,276,20" Style="{DynamicResource ButtonBorderStyle}" Width="120" Content="gem RFID Nr." Click="gemScanVare_Click" />
+                        <Button x:Name="scanAnuller" Style="{DynamicResource ButtonBorderStyle}" Width="120" Content="Annuller" Margin="294,273,124,20" Click="scanAnuller_Click" />
+
+
+                    </Grid>
+                </Border>
+
+                <Border x:Name="editKontainerStack" Visibility="Collapsed" Background="#FF002657" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Margin="426,216,400,227" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                    <Grid>
+                        <Grid>
+
+                            <Label HorizontalAlignment="Center" FontSize="16" Foreground="White" Margin="129,22,129,267" Content="Ret Container" />
+                            <Label HorizontalAlignment="Center" FontSize="15" Foreground="White" Margin="160,93,140,193" Height="37"  Content="Ret på Containerens vare nr. range" Width="238" />
+                            <Label x:Name="containerNavn" HorizontalContentAlignment="Center" Foreground="White" Margin="228,135,220,160" Content="container navn"/>
+                            <Label Foreground="White" Margin="10,183,271,113">Vare nr. start</Label>
+                            <TextBox x:Name="editVareNrStartBox" Margin="129,188,71,114" PreviewTextInput="NumberValidation"></TextBox>
+                            <Label Foreground="White" Margin="10,221,274,74">Vare nr. slut</Label>
+                            <TextBox x:Name="editVareNrSlutBox" PreviewTextInput="NumberValidation" Margin="129,225,71,76"></TextBox>
+                            <Button x:Name="editKontainerBtn" Margin="53,273,187,20" Style="{DynamicResource ButtonBorderStyle}" Width="120" Content="Ret container" Click="editKontainerBtn_Click"/>
+                            <Button x:Name="editAnnullerKontainerBtn" Style="{DynamicResource ButtonBorderStyle}" Width="120" Content="Annuller" Margin="216,273,24,20" Click="editAnnullerKontainerBtn_Click"/>
+
+
+                        </Grid>
+
+                    </Grid>
+                </Border>
+                <Border x:Name="StarterScannerBorder" Visibility="Collapsed" Background="#FF002657" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Grid.ColumnSpan="2" Margin="395,211,361,227" Grid.RowSpan="2">
+                    <Grid>
+                        <Label Content="Starter Scanner!" HorizontalAlignment="Center" Margin="0,15,0,0" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="72"/>
+                        <fa:ImageAwesome Icon="Refresh" Spin="True" Height="48" Width="48" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Bottom" Margin="0,0,0,20" />
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </Viewbox>
+</Page>
